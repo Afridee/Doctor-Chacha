@@ -1,4 +1,5 @@
 import 'package:doctor_chacha/Services/firebase_auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:doctor_chacha/Animation/FadeAnimation.dart';
 import 'package:flutter/material.dart';
