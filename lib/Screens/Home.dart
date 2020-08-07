@@ -1,7 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:doctor_chacha/Screens/homeScreens/Services.dart';
+import 'package:doctor_chacha/Screens/homeScreens/medicineStore.dart';
+import 'package:doctor_chacha/Screens/homeScreens/Cart.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,7 +13,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   PageController pageController;
 
   navBarOnTap(int pageIndex) {
@@ -28,44 +31,66 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    //this little code down here turns off auto rotation
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Color(0xff00ffed),
+              Color(0xff0088ba),
+            ]),
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        elevation: 0.0,
+        child: Container(
+          decoration: BoxDecoration(
+             color: Color(0xff0088ba)
+          ),
+        ),
+      ),
       body: PageView(
-          controller: pageController,
-          physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            color: Colors.blue,
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            color: Colors.red,
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            color: Colors.green,
-          )
-        ],
+        controller: pageController,
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget>[services(), medicineStore(), Cart()],
       ),
       bottomNavigationBar: CurvedNavigationBar(
         index: 1,
         color: Color(0xff0088ba),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xff00ffed),
         buttonBackgroundColor: Color(0xff00ffed),
         height: 60,
         items: <Widget>[
-          FaIcon(FontAwesomeIcons.servicestack, color: Colors.white),
-          FaIcon(FontAwesomeIcons.clinicMedical, color: Colors.white),
-          Icon(Icons.shopping_cart, size: 30, color: Colors.white)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FaIcon(
+              FontAwesomeIcons.servicestack,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FaIcon(FontAwesomeIcons.clinicMedical,
+                color: Colors.white, size: 30),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FaIcon(FontAwesomeIcons.shoppingCart,
+                color: Colors.white, size: 30),
+          ),
         ],
-        animationDuration: Duration(
-            milliseconds: 200
-        ),
+        animationDuration: Duration(milliseconds: 200),
         animationCurve: Curves.bounceInOut,
-        onTap: (index){
+        onTap: (index) {
           navBarOnTap(index);
         },
       ),
