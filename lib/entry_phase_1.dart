@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Services/firebase_auth_service.dart';
-import 'package:doctor_chacha/Screens/onboarding_screens.dart';
+import 'file:///F:/Doctor_chscha/doctor_chacha/lib/Screens/onboardingScreen/onboarding_screens.dart';
 
 class entry_phase_1 extends StatefulWidget {
   @override

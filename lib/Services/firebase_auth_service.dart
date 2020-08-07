@@ -9,14 +9,6 @@ class User {
   final String uid;
 }
 
-@immutable
-class PhoneUser {
-  const PhoneUser({@required this.uid, @required this.smsSent,@required this.verificationID, });
-  final String uid;
-  final String verificationID;
-  final bool smsSent;
-}
-
 class FirebaseAuthService {
   final _firebaseAuth = FirebaseAuth.instance;
 
