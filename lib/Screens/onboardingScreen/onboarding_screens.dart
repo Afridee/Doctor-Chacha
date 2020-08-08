@@ -32,10 +32,9 @@ final pages = [
     decoration: pageDecoration,
   ),
   PageViewModel(
-    title: "Fractional shares",
-    body:
-        "Instead of having to buy an entire share, invest any amount you want.",
-    image: _buildImage('books_revised'),
+    title: "Get the fastest delivery medicine for you.",
+    body: "Order medicine and get the delivery in the fastest time in the town",
+    image: _buildImage('fast-delivery'),
     decoration: pageDecoration,
   )
 ];

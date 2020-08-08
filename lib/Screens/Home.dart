@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:doctor_chacha/Screens/homeScreens/Services.dart';
-import 'package:doctor_chacha/Screens/homeScreens/medicineStore.dart';
+import 'file:///F:/Doctor_chscha/doctor_chacha/lib/Screens/homeScreens/MedStore/medicineStore.dart';
 import 'package:doctor_chacha/Screens/homeScreens/Cart.dart';
 
 class Home extends StatefulWidget {
