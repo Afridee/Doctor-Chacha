@@ -10,6 +10,21 @@ class medicineStore extends StatefulWidget {
 }
 
 class _medicineStoreState extends State<medicineStore> {
+
+  TextEditingController searchQuery;
+
+  @override
+  void initState() {
+    searchQuery = new TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    searchQuery.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,13 +34,13 @@ class _medicineStoreState extends State<medicineStore> {
         child: Column(
           children: [
             Expanded(
-              child: searchBar(),
+              child: searchBar(searchQuery: searchQuery),
               flex: 1,
             ),
             Expanded(
-              child: theListPart(),
+              child: theListPart(searchQuery: searchQuery),
               flex: 8,
-            )
+            ),
           ],
         ));
   }

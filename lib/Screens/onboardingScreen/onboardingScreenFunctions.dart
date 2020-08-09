@@ -4,9 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-bool userInfoexists;
 
-initialize_userInfoexists() async{
+ Future<bool> initialize_userInfoexists() async{
+   bool userInfoexists;
+
   final auth = FirebaseAuth.instance;
   final FirebaseUser user = await auth.currentUser();
   String userID = user.uid;
@@ -15,10 +16,12 @@ initialize_userInfoexists() async{
     onexist.exists ? userInfoexists = true : userInfoexists = false;
   });
 
+  return userInfoexists;
+
 }
 
 //Page After Onboarding Screen:
-afterOnboardingScreens(BuildContext context) async {
+afterOnboardingScreens(BuildContext context, bool userInfoexists) async {
   if(!userInfoexists){
     var route = new MaterialPageRoute(
       builder: (BuildContext context) => new infoForm(),

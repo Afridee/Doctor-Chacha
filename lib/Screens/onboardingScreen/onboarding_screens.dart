@@ -48,11 +48,15 @@ class onboarding_Screen_slider extends StatefulWidget {
 
 class _onboarding_Screen_sliderState extends State<onboarding_Screen_slider> {
   final introKey = GlobalKey<IntroductionScreenState>();
+  bool userInfoexists;
 
+  checkIfuserInfoexists() async{
+    userInfoexists = await initialize_userInfoexists();
+  }
 
   @override
   void initState() {
-    initialize_userInfoexists();
+    checkIfuserInfoexists();
     super.initState();
   }
 
@@ -63,10 +67,10 @@ class _onboarding_Screen_sliderState extends State<onboarding_Screen_slider> {
       key: introKey,
       pages: pages,
       onDone: () {
-        afterOnboardingScreens(context);
+        afterOnboardingScreens(context, userInfoexists);
       },
       onSkip: () {
-        afterOnboardingScreens(context);
+        afterOnboardingScreens(context, userInfoexists);
       },
       showSkipButton: true,
       skipFlex: 0,

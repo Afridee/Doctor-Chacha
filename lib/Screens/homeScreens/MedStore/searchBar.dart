@@ -1,35 +1,49 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class searchBar extends StatelessWidget {
+class searchBar extends StatefulWidget {
+
+  final TextEditingController searchQuery;
+
   const searchBar({
-    Key key,
+    Key key,@required this.searchQuery,
   }) : super(key: key);
 
   @override
+  _searchBarState createState() => _searchBarState();
+}
+
+class _searchBarState extends State<searchBar> {
+  @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xff00ffed),
-            Color(0xff0088ba),
-          ],
+      color: Color(0xfff0f0f0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(30),bottomLeft: Radius.circular(30)),
+          gradient: LinearGradient(
+            colors: [
+              Color(0xff00ffed),
+              Color(0xff0088ba),
+            ],
+          ),
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextField(
-          style: TextStyle(color: Colors.white),
-          keyboardType: TextInputType.emailAddress,
-          onChanged: (value) {},
-          decoration: InputDecoration(
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-              border: InputBorder.none,
-              hintText: "Find a medicine or medical kit...",
-              hintStyle: TextStyle(color: Colors.white)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: widget.searchQuery,
+            style: TextStyle(color: Colors.white),
+            keyboardType: TextInputType.emailAddress,
+            onChanged: (value) {},
+            decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                border: InputBorder.none,
+                hintText: "Find a medicine or medical kit...",
+                hintStyle: TextStyle(color: Colors.white)),
+          ),
         ),
       ),
     );
