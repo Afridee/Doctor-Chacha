@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
+import 'package:doctor_chacha/Constants.dart';
 
 
 class login_page extends StatefulWidget {
@@ -155,8 +156,8 @@ class _login_pageState extends State<login_page> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   gradient: LinearGradient(colors: [
-                                    Color(0xff00ffed),
-                                    Color(0xff0088ba),
+                                    primaryLight,
+                                    primaryDark,
                                   ])),
                               child: Center(
                                 child: Text(
@@ -186,8 +187,8 @@ class _login_pageState extends State<login_page> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   gradient: LinearGradient(colors: [
-                                    Color(0xff00ffed),
-                                    Color(0xff0088ba),
+                                    primaryLight,
+                                    primaryDark,
                                   ])),
                               child: Center(
                                 child: Text(
@@ -215,7 +216,7 @@ class _login_pageState extends State<login_page> {
                           InkWell(
                             child: Text(
                               "Forgot Password? Click here",
-                              style: TextStyle(color: Color(0xff0088ba), fontWeight: FontWeight.bold),
+                              style: TextStyle(color: primaryDark, fontWeight: FontWeight.bold),
                             ),
                             onTap: () {
 

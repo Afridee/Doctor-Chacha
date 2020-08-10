@@ -1,10 +1,12 @@
+import 'package:doctor_chacha/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:doctor_chacha/Screens/homeScreens/MedStore/List_element_state.dart';
+import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElementState.dart';
+import 'package:doctor_chacha/widgets/snackBar.dart';
+import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElementFunctionality.dart';
 
 class listElement extends StatefulWidget {
-
   final String brandName;
   final String manufacturer;
   final String strength;
@@ -13,7 +15,13 @@ class listElement extends StatefulWidget {
   final price;
 
   const listElement({
-    Key key,@required this.brandName,@required this.manufacturer,@required this.strength,@required this.dosageDescription,@required this.price,@required this.unit,
+    Key key,
+    @required this.brandName,
+    @required this.manufacturer,
+    @required this.strength,
+    @required this.dosageDescription,
+    @required this.price,
+    @required this.unit,
   }) : super(key: key);
 
   @override
@@ -21,9 +29,10 @@ class listElement extends StatefulWidget {
 }
 
 class _listElementState extends State<listElement> {
+
   @override
   Widget build(BuildContext context) {
-    listItemState LIS = new listItemState();
+    listStateClass LIS = new listStateClass();
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -49,7 +58,7 @@ class _listElementState extends State<listElement> {
                       style: TextStyle(color: Colors.grey, fontSize: 13),
                     ),
                     Text(
-                      '৳'+widget.price.toString(),
+                      '৳' + widget.price.toString(),
                       style: TextStyle(color: Colors.green, fontSize: 18),
                     ),
                   ],
@@ -57,33 +66,20 @@ class _listElementState extends State<listElement> {
               ),
               trailing: InkWell(
                 onTap: () {
-                  Scaffold.of(context).showSnackBar(
-                    SnackBar(
-                      content: Row(
-                        children: <Widget>[
-                          Text('Added to cart',
-                           style: TextStyle(
-                             color: Color(0xff0088ba)
-                           ),),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          FaIcon(
-                            FontAwesomeIcons.shoppingCart,
-                            color: Color(0xff0088ba),
-                            size: 20,
-                          ),
-                        ],
-                      ),
-                      backgroundColor: Color(0xff00ffed),
-                    ),
-                  );
+                   addToCart(
+                       context: context,
+                       brandName: widget.brandName,
+                       manufacturer: widget.manufacturer,
+                       strength: widget.strength,
+                       price: widget.price,
+                       unit: widget.unit,
+                       qty: LIS.qty);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(top:15.0),
+                  padding: const EdgeInsets.only(top: 15.0),
                   child: FaIcon(
                     FontAwesomeIcons.cartPlus,
-                    color: Color(0xff0088ba),
+                    color: primaryDark,
                     size: 25,
                   ),
                 ),
@@ -94,22 +90,22 @@ class _listElementState extends State<listElement> {
               children: <Widget>[
                 IconButton(
                   icon: Icon(Icons.remove_circle),
-                  color: Color(0xff00ffed),
+                  color: primaryLight,
                   iconSize: 30,
                   onPressed: () {
-                    LIS.deduct.call();
+                    LIS.deduct();
                   },
                 ),
                 Observer(builder: (context) {
-                  return Text('${LIS.qty.value}',
+                  return Text('${LIS.qty}',
                       style: TextStyle(fontSize: 20));
                 }),
                 IconButton(
                   icon: Icon(Icons.add_circle),
-                  color: Color(0xff00ffed),
+                  color: primaryLight,
                   iconSize: 30,
                   onPressed: () {
-                    LIS.add.call();
+                    LIS.add();
                   },
                 )
               ],

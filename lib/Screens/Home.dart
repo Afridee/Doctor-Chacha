@@ -1,11 +1,12 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:doctor_chacha/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:doctor_chacha/Screens/homeScreens/Services.dart';
 import 'file:///F:/Doctor_chscha/doctor_chacha/lib/Screens/homeScreens/MedStore/medicineStore.dart';
-import 'package:doctor_chacha/Screens/homeScreens/Cart.dart';
+import 'file:///F:/Doctor_chscha/doctor_chacha/lib/Screens/homeScreens/Cart/Cart.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -43,8 +44,8 @@ class _HomeState extends State<Home> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-              Color(0xff00ffed),
-              Color(0xff0088ba),
+              primaryLight,
+              primaryDark,
             ]),
           ),
         ),
@@ -53,7 +54,7 @@ class _HomeState extends State<Home> {
         elevation: 0.0,
         child: Container(
           decoration: BoxDecoration(
-             color: Color(0xff0088ba)
+             color: primaryDark
           ),
         ),
       ),
@@ -64,9 +65,9 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         index: 1,
-        color: Color(0xff0088ba),
-        backgroundColor: Color(0xff00ffed),
-        buttonBackgroundColor: Color(0xff00ffed),
+        color: primaryDark,
+        backgroundColor: primaryLight,
+        buttonBackgroundColor: primaryLight,
         height: 60,
         items: <Widget>[
           Padding(

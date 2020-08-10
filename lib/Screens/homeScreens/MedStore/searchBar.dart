@@ -1,3 +1,4 @@
+import 'package:doctor_chacha/Constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +24,8 @@ class _searchBarState extends State<searchBar> {
           borderRadius: BorderRadius.only(bottomRight: Radius.circular(30),bottomLeft: Radius.circular(30)),
           gradient: LinearGradient(
             colors: [
-              Color(0xff00ffed),
-              Color(0xff0088ba),
+              primaryLight,
+              primaryDark,
             ],
           ),
         ),

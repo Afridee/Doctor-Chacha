@@ -1,3 +1,4 @@
+import 'package:doctor_chacha/Constants.dart';
 import 'package:doctor_chacha/Screens/info_form/infoFormStateManagement.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,7 +50,7 @@ class _infoFormState extends State<infoForm> {
         builder: (context){
           return ModalProgressHUD(
             inAsyncCall: gS.spinner.value,
-            color: Color(0xff0088ba),
+            color: primaryDark,
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
@@ -123,8 +124,8 @@ class _infoFormState extends State<infoForm> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             gradient: LinearGradient(colors: [
-                              Color(0xff00ffed),
-                              Color(0xff0088ba),
+                              primaryLight,
+                              primaryDark,
                             ])),
                         child: Center(
                           child: Text(

@@ -13,8 +13,18 @@ class _CartState extends State<Cart> {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       color: Colors.white,
-      child: Center(
-        child: Text('Cart'),
+      child: Column(
+         children: [
+           Expanded(child: Container(
+             color: Colors.green
+           ),flex: 1),
+           Expanded(child: Container(
+               color: Colors.red
+           ),flex: 5),
+           Expanded(child: Container(
+               color: Colors.purple
+           ),flex: 1)
+         ],
       ),
     );
   }

@@ -27,7 +27,7 @@ final pages = [
   PageViewModel(
     title: "Hi, I'm Daktar Chacha",
     body:
-        "Daktar Chacha is a ground breaking initiative to facilitate the next generation of healthcare for Bangladesh.",
+        "your personal healthcare companion",
     image: _buildImage('doctor_chacha_logo'),
     decoration: pageDecoration,
   ),

@@ -27,7 +27,7 @@ afterOnboardingScreens(BuildContext context, bool userInfoexists) async {
       builder: (BuildContext context) => new infoForm(),
     );
     Navigator.of(context).push(route);
-  }else{
+  }else if(userInfoexists!=null){
     var route = new MaterialPageRoute(
       builder: (BuildContext context) => new Home(),
     );
