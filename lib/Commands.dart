@@ -18,4 +18,5 @@ http://tomeko.net/online_tools/hex_to_base64.php
 
 5. Code generating in mobX:
 
-flutter packages pub run build_runner build*/
+flutter packages pub run build_runner build --delete-conflicting-outputs
+*/

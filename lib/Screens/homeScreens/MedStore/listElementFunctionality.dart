@@ -14,14 +14,16 @@ void addToCart({BuildContext context, String brandName, String manufacturer, Str
 
     final CollectionReference cart = Firestore.instance.collection('users/${userID}/cart');
 
-   await cart.document(brandName).setData({
-      'brandName' : brandName,
-      'manufacturer' : manufacturer,
-      'strength' : strength,
-      'price' : price,
-      'unit' : unit,
-      'qty' : qty
-    }, merge: true);
+    if(qty>0){
+      await cart.document(brandName).setData({
+        'brandName' : brandName,
+        'manufacturer' : manufacturer,
+        'strength' : strength,
+        'price' : price,
+        'unit' : unit,
+        'qty' : qty
+      }, merge: true);
+    }
 
     snackBar(
         duration: 2,

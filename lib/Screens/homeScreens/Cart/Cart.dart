@@ -1,5 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_chacha/Constants.dart';
+import 'package:doctor_chacha/Screens/homeScreens/Cart/cartList.dart';
+import 'package:doctor_chacha/Screens/homeScreens/Cart/confirmPart.dart';
+import 'package:doctor_chacha/Screens/homeScreens/Cart/couponPart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+
 
 class Cart extends StatefulWidget {
   @override
@@ -12,19 +18,17 @@ class _CartState extends State<Cart> {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      color: Colors.white,
+      decoration: BoxDecoration(
+        color: Color(0xfff0f0f0),
+      ),
       child: Column(
-         children: [
-           Expanded(child: Container(
-             color: Colors.green
-           ),flex: 1),
-           Expanded(child: Container(
-               color: Colors.red
-           ),flex: 5),
-           Expanded(child: Container(
-               color: Colors.purple
-           ),flex: 1)
-         ],
+        children: [
+          Expanded(child: couponPart(), flex: 1),
+          Expanded(
+              child: CartList(),
+              flex: 6),
+          Expanded(child: confirmPart(), flex: 1)
+        ],
       ),
     );
   }
