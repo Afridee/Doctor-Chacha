@@ -26,15 +26,20 @@ Widget _buildImage(String assetName) {
 final pages = [
   PageViewModel(
     title: "Hi, I'm Daktar Chacha",
-    body:
-        "your personal healthcare companion",
-    image: _buildImage('doctor_chacha_logo'),
+    body: "your personal healthcare companion",
+    image: _buildImage('Daktar_chacha_icon'),
     decoration: pageDecoration,
   ),
   PageViewModel(
     title: "Get the fastest delivery medicine for you.",
     body: "Order medicine and get the delivery in the fastest time in the town",
     image: _buildImage('fast-delivery'),
+    decoration: pageDecoration,
+  ),
+  PageViewModel(
+    title: "Make an appointment with a doctor",
+    body: "Set an appointment with a doctor without any hassel",
+    image: _buildImage('clip-doctor-and-patient'),
     decoration: pageDecoration,
   )
 ];

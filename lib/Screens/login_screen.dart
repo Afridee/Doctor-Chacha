@@ -6,6 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 import 'package:doctor_chacha/Constants.dart';
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class login_page extends StatefulWidget {
@@ -65,18 +67,22 @@ class _login_pageState extends State<login_page> {
                     child: Stack(
                       children: <Widget>[
                         Positioned(
-                          right: MediaQuery.of(context).size.width / 2 - 100,
-                          top: 50,
+                          right: MediaQuery.of(context).size.width / 2 - 360,
+                          top: 70,
+                          width: MediaQuery.of(context).size.width,
+                          height: 200,
+                          child: FadeAnimation(
+                              1.5,
+                              Text('Daktar\nChacha', style: GoogleFonts.roboto(textStyle: TextStyle(fontSize: 30, color: primaryDark, fontWeight: FontWeight.w500)),)),
+                        ),
+                        Positioned(
+                          right: MediaQuery.of(context).size.width / 2 -50,
+                          top: 70,
                           width: 200,
                           height: 200,
                           child: FadeAnimation(
                               1.5,
-                              Container(
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/doctor_chacha_logo.png'))),
-                              )),
+                              FlareActor("assets/animations/doctor_chacha_live_icon.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:"blinking")),
                         ),
                       ],
                     ),

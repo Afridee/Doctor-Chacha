@@ -28,11 +28,33 @@ class listElement extends StatefulWidget {
   _listElementState createState() => _listElementState();
 }
 
-class _listElementState extends State<listElement> {
+class _listElementState extends State<listElement> with SingleTickerProviderStateMixin{
+
+  //Animation Controller for button:
+  AnimationController _addButtonAnimationController;
+
+  @override
+  void initState() {
+    //initializing animation controller
+    _addButtonAnimationController = AnimationController(
+        duration: Duration(milliseconds: 100),
+        vsync: this,
+        lowerBound: 0.0,
+        upperBound: 0.7
+    )..addListener((){
+      setState(() {});
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    //State Management for list Item:
     listStateClass LIS = new listStateClass();
+
+    //For button animation:
+    double scale = _addButtonAnimationController.value + 1;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -65,7 +87,11 @@ class _listElementState extends State<listElement> {
                 ),
               ),
               trailing: InkWell(
-                onTap: () {
+                onTap: () async{
+                  //bounce animation:
+                  await _addButtonAnimationController.forward();
+                  _addButtonAnimationController.reverse();
+                  //Add this Item to Cart:
                    addToCart(
                        context: context,
                        brandName: widget.brandName,
@@ -77,10 +103,13 @@ class _listElementState extends State<listElement> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15.0),
-                  child: FaIcon(
-                    FontAwesomeIcons.cartPlus,
-                    color: primaryDark,
-                    size: 25,
+                  child: Transform.scale(
+                    scale: scale,
+                    child: FaIcon(
+                      FontAwesomeIcons.cartPlus,
+                      color: primaryDark,
+                      size: 25,
+                    ),
                   ),
                 ),
               ),

@@ -54,7 +54,7 @@ class _CartListState extends State<CartList> {
                       itemCount: snapshot.data.documents.length + 1,
                       itemBuilder: (context, index) {
                         if (index == snapshot.data.documents.length) {
-                          return Column(
+                          return snapshot.data.documents.length!=0? Column(
                             children: [
                               Text(
                                 'Discount: 0%',
@@ -75,7 +75,7 @@ class _CartListState extends State<CartList> {
                                 },
                               ),
                             ],
-                          );
+                          ) : Container();
                         }
                         return cartListItem(
                              CS: CS,
