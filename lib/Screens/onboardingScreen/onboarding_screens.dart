@@ -2,6 +2,7 @@
 import 'package:doctor_chacha/Screens/onboardingScreen/onboardingScreenFunctions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 
@@ -37,6 +38,12 @@ final pages = [
     decoration: pageDecoration,
   ),
   PageViewModel(
+    title: "Contact a doctor instantly",
+    body: "Have the luxury to contact a doctor instantly.",
+    image: _buildImage('clip-doctor-sent-me-a-message'),
+    decoration: pageDecoration,
+  ),
+  PageViewModel(
     title: "Make an appointment with a doctor",
     body: "Set an appointment with a doctor without any hassel",
     image: _buildImage('clip-doctor-and-patient'),
@@ -67,6 +74,12 @@ class _onboarding_Screen_sliderState extends State<onboarding_Screen_slider> {
 
   @override
   Widget build(BuildContext context) {
+
+    //this little code down here turns off auto rotation
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+
     // TODO: implement build
     return IntroductionScreen(
       key: introKey,

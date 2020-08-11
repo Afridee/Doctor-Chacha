@@ -1,4 +1,5 @@
-import 'package:doctor_chacha/Screens/login_screen.dart';
+
+import 'package:doctor_chacha/Screens/loginPages/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

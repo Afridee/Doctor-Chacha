@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -59,13 +60,45 @@ class FirebaseAuthService {
         return _userFromFirebase(user);
   }
 
-
   Future<String> getCurrentUserUID() async {
     final auth = FirebaseAuth.instance;
     final FirebaseUser user = await auth.currentUser();
     String userID = user.uid;
 
     return userID;
+  }
+
+  Future<String> LogInWIthPhone(String phoneNumber) async{
+
+    String verificationID = 'blank';
+    final _firebaseAuth = FirebaseAuth.instance;
+
+    final PhoneVerificationCompleted verified = (AuthCredential authresult) async{
+      await _firebaseAuth.signInWithCredential(authresult);
+    };
+
+    final PhoneVerificationFailed verificationfailed = (AuthException authException){
+      verificationID = 'Error from phone LOg In: ${authException.message}';
+    };
+
+    final PhoneCodeSent smsSent = (String verId, [int forceResend]){
+      verificationID = verId;
+    };
+
+
+    final PhoneCodeAutoRetrievalTimeout autoTimeout = (String verId){
+      verificationID = verId;
+    };
+
+    await _firebaseAuth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        timeout: const Duration(seconds: 5),
+        verificationCompleted: verified,
+        verificationFailed: verificationfailed,
+        codeSent: smsSent,
+        codeAutoRetrievalTimeout: null);
+
+    return verificationID;
   }
 
   Future<void> signOut() async {
