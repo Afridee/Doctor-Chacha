@@ -43,6 +43,9 @@ dependencies:
   stripe_payment: ^1.0.7
   flare_flutter: ^2.0.6
   google_fonts: ^1.1.0
+  country_code_picker: ^1.4.0
+  otp_text_field: ^1.0.1
+
 
 
   # The following adds the Cupertino Icons font to your application.

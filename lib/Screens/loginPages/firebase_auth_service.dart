@@ -1,3 +1,4 @@
+import 'package:doctor_chacha/Screens/loginPages/phoneNumberStateManagement.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -68,37 +69,35 @@ class FirebaseAuthService {
     return userID;
   }
 
-  Future<String> LogInWIthPhone(String phoneNumber) async{
+  Future<void> LogInWIthPhone(phoneNumberStateClass phoneState, BuildContext context) async{
 
-    String verificationID = 'blank';
     final _firebaseAuth = FirebaseAuth.instance;
 
     final PhoneVerificationCompleted verified = (AuthCredential authresult) async{
       await _firebaseAuth.signInWithCredential(authresult);
+      Navigator.of(context).pop();
     };
 
     final PhoneVerificationFailed verificationfailed = (AuthException authException){
-      verificationID = 'Error from phone LOg In: ${authException.message}';
+        phoneState.getErrorWhileEnteringPhoneNumber('${authException.message}');
     };
 
     final PhoneCodeSent smsSent = (String verId, [int forceResend]){
-      verificationID = verId;
+        phoneState.setverificationID(verId);
     };
 
 
     final PhoneCodeAutoRetrievalTimeout autoTimeout = (String verId){
-      verificationID = verId;
+        phoneState.setverificationID(verId);
     };
 
     await _firebaseAuth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
+        phoneNumber: phoneState.countryCode+phoneState.phoneNumber,
         timeout: const Duration(seconds: 5),
         verificationCompleted: verified,
         verificationFailed: verificationfailed,
         codeSent: smsSent,
         codeAutoRetrievalTimeout: null);
-
-    return verificationID;
   }
 
   Future<void> signOut() async {

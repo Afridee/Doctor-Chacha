@@ -16,6 +16,8 @@ class login_page extends StatefulWidget {
 
 class _login_pageState extends State<login_page> {
   //variables:
+  TextEditingController email;
+  TextEditingController password;
   bool showSpinner = false;
   String loginError = '';
 
@@ -25,12 +27,15 @@ class _login_pageState extends State<login_page> {
 
   @override
   void initState() {
+    email = new TextEditingController();
+    password = new TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    email.dispose();
+    password.dispose();
     super.dispose();
   }
 
@@ -106,9 +111,9 @@ class _login_pageState extends State<login_page> {
                               child: Column(
                                 children: <Widget>[
                                   loginTextfield(
-                                      hideText: false, hintText: 'email'),
+                                      hideText: false, labelText: 'email', textController: email),
                                   loginTextfield(
-                                      hideText: true, hintText: 'password')
+                                      hideText: true, labelText: 'password', textController: password,)
                                 ],
                               ),
                             )),

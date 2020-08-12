@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 class loginTextfield extends StatelessWidget {
 
-  final String hintText;
+  final String labelText;
   final bool hideText;
+  final TextEditingController textController;
 
   const loginTextfield({
-    Key key,@required this.hintText,@required this.hideText,
+    Key key,@required this.labelText,@required this.hideText,@required this.textController,
   }) : super(key: key);
 
   @override
@@ -19,6 +20,7 @@ class loginTextfield extends StatelessWidget {
               bottom: BorderSide(
                   color: Colors.grey[100]))),
       child: TextField(
+        controller: textController,
         obscureText: hideText,
         keyboardType: TextInputType.emailAddress,
         onChanged: (value) {
@@ -26,7 +28,7 @@ class loginTextfield extends StatelessWidget {
         },
         decoration: InputDecoration(
             border: InputBorder.none,
-            labelText: hintText,
+            labelText: labelText,
             hintStyle: TextStyle(
                 color: Colors.grey[400])),
       ),

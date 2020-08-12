@@ -2,7 +2,7 @@ import 'package:doctor_chacha/entry_phase_1.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'Services/firebase_auth_service.dart';
+import 'Screens/loginPages/firebase_auth_service.dart';
 
 void main() {
   runApp(MyApp());

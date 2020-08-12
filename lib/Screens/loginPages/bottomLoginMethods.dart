@@ -1,4 +1,5 @@
 
+import 'package:doctor_chacha/Screens/loginPages/enterPhoneNumberScreen.dart';
 import 'package:doctor_chacha/Screens/loginPages/loginFunctionalities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,9 +53,12 @@ class _bottomLoginMethodsState extends State<bottomLoginMethods> {
                 icon: FaIcon(FontAwesomeIcons.mobile),
                 color: Colors.green,
                 iconSize: 40,
-                onPressed: () async{
-                  String verificationID = await  LogInWIthPhone('+8801910027738',context);
-                  print('verification ID : ' + verificationID);
+                onPressed: () {
+                  var route = new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                    new enterPhoneNumber(),
+                  );
+                  Navigator.of(context).push(route);
                 }),
             Text('Phone')
           ],

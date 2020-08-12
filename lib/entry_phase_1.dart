@@ -3,7 +3,7 @@ import 'package:doctor_chacha/Screens/loginPages/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'Services/firebase_auth_service.dart';
+import 'Screens/loginPages/firebase_auth_service.dart';
 import 'package:doctor_chacha/Screens/onboardingScreen/onboarding_screens.dart';
 
 class entry_phase_1 extends StatefulWidget {
@@ -23,8 +23,10 @@ class _entry_phase_1State extends State<entry_phase_1> {
           return user == null? login_page() : onboarding_Screen_slider();
         }else{
           return Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
+              body: Container(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
               )
           );
         }

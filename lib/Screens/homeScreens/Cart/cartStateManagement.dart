@@ -1,4 +1,4 @@
-import 'package:doctor_chacha/Services/firebase_auth_service.dart';
+import 'package:doctor_chacha/Screens/loginPages/firebase_auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:mobx/mobx.dart';

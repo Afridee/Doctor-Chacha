@@ -1,4 +1,5 @@
-import 'package:doctor_chacha/Services/firebase_auth_service.dart';
+import 'package:doctor_chacha/Screens/loginPages/firebase_auth_service.dart';
+import 'package:doctor_chacha/Screens/loginPages/phoneNumberStateManagement.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -14,14 +15,18 @@ Future<void> LogInWIthGoogle(BuildContext context) async {
 }
 
 
-LogInWithOTP(String smsCode, verID) async{
+LogInWithOTP(BuildContext context, String smsCode,phoneNumberStateClass phoneState) async{
   final _firebaseAuth = FirebaseAuth.instance;
-  AuthCredential authCreds = PhoneAuthProvider.getCredential(verificationId: verID, smsCode: smsCode.trim());
-  await _firebaseAuth.signInWithCredential(authCreds);
+  try{
+    AuthCredential authCreds = PhoneAuthProvider.getCredential(verificationId: phoneState.verificationID, smsCode: smsCode.trim());
+    await _firebaseAuth.signInWithCredential(authCreds);
+    Navigator.of(context).pop();
+  }catch(e){
+    phoneState.getErrorWhileEnteringOTP(e.message);
+  }
 }
 
-Future<String> LogInWIthPhone(String phoneNumber, BuildContext context) async{
+LogInWIthPhone(phoneNumberStateClass phoneState, BuildContext context) async{
   final auth = Provider.of<FirebaseAuthService>(context, listen: false);
-  String verificationID =  await auth.LogInWIthPhone(phoneNumber);
-  return verificationID;
+  auth.LogInWIthPhone(phoneState, context);
 }
