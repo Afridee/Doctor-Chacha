@@ -1,9 +1,13 @@
+import 'package:doctor_chacha/Screens/loginPages/RegistrationScreen.dart';
 import 'package:doctor_chacha/Screens/loginPages/bottomLoginMethods.dart';
+import 'package:doctor_chacha/Screens/loginPages/emaiLogInStateManagement.dart';
 import 'package:doctor_chacha/Screens/loginPages/loginButtonStyles.dart';
+import 'package:doctor_chacha/Screens/loginPages/loginFunctionalities.dart';
 import 'package:doctor_chacha/Screens/loginPages/loginTextFields.dart';
 import 'package:flutter/services.dart';
 import 'package:doctor_chacha/Animation/FadeAnimation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:doctor_chacha/Constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -16,26 +20,36 @@ class login_page extends StatefulWidget {
 
 class _login_pageState extends State<login_page> {
   //variables:
-  TextEditingController email;
-  TextEditingController password;
+  TextEditingController emailTextController;
+  TextEditingController passwordTextController;
   bool showSpinner = false;
-  String loginError = '';
-
+  emaiLogInStateClass ELS;
   //functions:
 
   //function 1:
 
   @override
   void initState() {
-    email = new TextEditingController();
-    password = new TextEditingController();
+
+    emailTextController = new TextEditingController();
+    passwordTextController = new TextEditingController();
+    ELS = new emaiLogInStateClass();
+
+    emailTextController.addListener(() {
+      ELS.setEmail(emailTextController.text);
+    });
+
+    passwordTextController.addListener(() {
+      ELS.setPassword(passwordTextController.text);
+    });
+
     super.initState();
   }
 
   @override
   void dispose() {
-    email.dispose();
-    password.dispose();
+    emailTextController.dispose();
+    passwordTextController.dispose();
     super.dispose();
   }
 
@@ -47,20 +61,21 @@ class _login_pageState extends State<login_page> {
     ]);
 
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xffF0F0F0),
         body: ModalProgressHUD(
           inAsyncCall: showSpinner,
           child: SingleChildScrollView(
             child: Container(
+              color: Color(0xffF0F0F0),
               child: Column(
                 children: <Widget>[
                   Container(
-                    height: 230,
+                    height: 200,
                     child: Stack(
                       children: <Widget>[
                         Positioned(
                           right: MediaQuery.of(context).size.width / 2 - 360,
-                          top: 70,
+                          top: 40,
                           width: MediaQuery.of(context).size.width,
                           height: 200,
                           child: FadeAnimation(
@@ -76,7 +91,7 @@ class _login_pageState extends State<login_page> {
                         ),
                         Positioned(
                           right: MediaQuery.of(context).size.width / 2 - 50,
-                          top: 70,
+                          top: 40,
                           width: 200,
                           height: 200,
                           child: FadeAnimation(
@@ -111,9 +126,9 @@ class _login_pageState extends State<login_page> {
                               child: Column(
                                 children: <Widget>[
                                   loginTextfield(
-                                      hideText: false, labelText: 'email', textController: email),
+                                      hideText: false, labelText: 'email', textController: emailTextController),
                                   loginTextfield(
-                                      hideText: true, labelText: 'password', textController: password,)
+                                      hideText: true, labelText: 'password', textController: passwordTextController,)
                                 ],
                               ),
                             )),
@@ -123,8 +138,10 @@ class _login_pageState extends State<login_page> {
                         FadeAnimation(
                           2,
                           InkWell(
-                            onTap: () {},
-                            child: loginCustomizedButton(buttonText: 'Login'),
+                            onTap: () {
+                              SignInWIthEmail(context, ELS);
+                            },
+                            child: loginCustomizedButton(buttonText: 'Log In'),
                           ),
                         ),
                         SizedBox(
@@ -133,17 +150,27 @@ class _login_pageState extends State<login_page> {
                         FadeAnimation(
                           2,
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              var route = new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                new  RegistrationScreen(emailTextController: emailTextController,passwordTextController: passwordTextController,ELS: ELS),
+                              );
+                              Navigator.of(context).push(route);
+                            },
                             child:
-                                loginCustomizedButton(buttonText: 'Register'),
+                                loginCustomizedButton(buttonText: 'Sign Up'),
                           ),
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        Text(loginError,
-                            style:
-                                TextStyle(color: Colors.red, fontSize: 10.0)),
+                        Observer(
+                          builder: (context){
+                            return Text(ELS.errorWhileSigningIn,
+                                style:
+                                TextStyle(color: Colors.red, fontSize: 10.0));
+                          },
+                        ),
                         SizedBox(
                           height: 10,
                         ),
@@ -163,7 +190,7 @@ class _login_pageState extends State<login_page> {
                           height: 10,
                         ),
                         Text(
-                          'Sign-in using',
+                          'Or sign-in using...',
                           style: TextStyle(fontSize: 20),
                         ),
                         SizedBox(

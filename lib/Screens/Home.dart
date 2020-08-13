@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:doctor_chacha/Constants.dart';
+import 'package:doctor_chacha/Screens/loginPages/loginFunctionalities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -49,6 +50,17 @@ class _HomeState extends State<Home> {
             ]),
           ),
         ),
+          actions: <Widget>[
+            IconButton(
+              icon:Icon(
+                  Icons.logout,
+                  color: Colors.white,
+              ),
+              onPressed: () {
+                signOut(context);
+              },
+            )
+          ]
       ),
       drawer: Drawer(
         elevation: 0.0,

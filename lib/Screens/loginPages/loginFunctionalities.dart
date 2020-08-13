@@ -1,7 +1,9 @@
+import 'package:doctor_chacha/Screens/loginPages/emaiLogInStateManagement.dart';
 import 'package:doctor_chacha/Screens/loginPages/firebase_auth_service.dart';
 import 'package:doctor_chacha/Screens/loginPages/phoneNumberStateManagement.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 Future<void> LogInWithFacebook(BuildContext context) async {
@@ -29,4 +31,27 @@ LogInWithOTP(BuildContext context, String smsCode,phoneNumberStateClass phoneSta
 LogInWIthPhone(phoneNumberStateClass phoneState, BuildContext context) async{
   final auth = Provider.of<FirebaseAuthService>(context, listen: false);
   auth.LogInWIthPhone(phoneState, context);
+}
+
+Future<void> SignInWIthEmail(BuildContext context,emaiLogInStateClass emaiLogInState) async {
+    final auth = Provider.of<FirebaseAuthService>(context, listen: false);
+    final user = await auth.signInWithEmail(emaiLogInState);
+}
+
+Future<void> SignUpWIthEmail(BuildContext context,emaiLogInStateClass emaiLogInState) async {
+  final auth = Provider.of<FirebaseAuthService>(context, listen: false);
+  final user = await auth.signUpWithEmail(emaiLogInState);
+  if(user!=null){
+    Navigator.of(context).pop();
+  }
+}
+
+Future<void> signOut(BuildContext context) async {
+  final _firebaseAuth = FirebaseAuth.instance;
+  try {
+    await _firebaseAuth.signOut();
+    Navigator.of(context).pop();
+  } catch (e) {
+    print(e);
+  }
 }

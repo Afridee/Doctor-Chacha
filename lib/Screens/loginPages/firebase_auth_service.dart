@@ -1,3 +1,4 @@
+import 'package:doctor_chacha/Screens/loginPages/emaiLogInStateManagement.dart';
 import 'package:doctor_chacha/Screens/loginPages/phoneNumberStateManagement.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -100,7 +101,23 @@ class FirebaseAuthService {
         codeAutoRetrievalTimeout: null);
   }
 
-  Future<void> signOut() async {
-    return await _firebaseAuth.signOut();
+  Future<User> signUpWithEmail(emaiLogInStateClass emaiLogInState) async {
+    try {
+      final authResult = await _firebaseAuth.createUserWithEmailAndPassword(email: emaiLogInState.email, password: emaiLogInState.password);
+      await authResult.user.sendEmailVerification();
+      return _userFromFirebase(authResult.user);
+    } catch (e) {
+      emaiLogInState.getErrorWhileSigningUp(e.message);
+    }
   }
+
+  Future<User> signInWithEmail(emaiLogInStateClass emaiLogInState) async {
+    try {
+      final authResult = await _firebaseAuth.signInWithEmailAndPassword(email: emaiLogInState.email, password: emaiLogInState.password);
+      return _userFromFirebase(authResult.user);
+    } catch (e) {
+      emaiLogInState.getErrorWhileSigningIn(e.message);
+    }
+  }
+
 }
