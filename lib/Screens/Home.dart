@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:doctor_chacha/Screens/homeScreens/Services.dart';
+import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/directionToDoctor.dart';
 import 'package:doctor_chacha/Screens/homeScreens/MedStore/medicineStore.dart';
 import 'package:doctor_chacha/Screens/homeScreens/Cart/Cart.dart';
 
@@ -38,74 +38,77 @@ class _HomeState extends State<Home> {
       DeviceOrientation.portraitUp,
     ]);
 
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              primaryLight,
-              primaryDark,
-            ]),
-          ),
-        ),
-          actions: <Widget>[
-            IconButton(
-              icon:Icon(
-                  Icons.logout,
-                  color: Colors.white,
-              ),
-              onPressed: () {
-                signOut(context);
-              },
-            )
-          ]
-      ),
-      drawer: Drawer(
-        elevation: 0.0,
-        child: Container(
-          decoration: BoxDecoration(
-             color: primaryDark
-          ),
-        ),
-      ),
-      body: PageView(
-        controller: pageController,
-        physics: NeverScrollableScrollPhysics(),
-        children: <Widget>[directionToDoctor(), medicineStore(), Cart()],
-      ),
-      bottomNavigationBar: CurvedNavigationBar(
-        index: 1,
-        color: primaryDark,
-        backgroundColor: primaryLight,
-        buttonBackgroundColor: primaryLight,
-        height: 60,
-        items: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FaIcon(
-              FontAwesomeIcons.servicestack,
-              color: Colors.white,
-              size: 30,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+                primaryLight,
+                primaryDark,
+              ]),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FaIcon(FontAwesomeIcons.clinicMedical,
-                color: Colors.white, size: 30),
+            actions: <Widget>[
+              IconButton(
+                icon:Icon(
+                    Icons.logout,
+                    color: Colors.white,
+                ),
+                onPressed: () {
+                  signOut(context);
+                },
+              )
+            ]
+        ),
+        drawer: Drawer(
+          elevation: 0.0,
+          child: Container(
+            decoration: BoxDecoration(
+               color: primaryDark
+            ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FaIcon(FontAwesomeIcons.shoppingCart,
-                color: Colors.white, size: 30),
-          ),
-        ],
-        animationDuration: Duration(milliseconds: 200),
-        animationCurve: Curves.bounceInOut,
-        onTap: (index) {
-          navBarOnTap(index);
-        },
+        ),
+        body: PageView(
+          controller: pageController,
+          physics: NeverScrollableScrollPhysics(),
+          children: <Widget>[directionToDoctor(), medicineStore(), Cart()],
+        ),
+        bottomNavigationBar: CurvedNavigationBar(
+          index: 1,
+          color: primaryDark,
+          backgroundColor: primaryLight,
+          buttonBackgroundColor: primaryLight,
+          height: 60,
+          items: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FaIcon(
+                FontAwesomeIcons.hospital,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FaIcon(FontAwesomeIcons.pills,
+                  color: Colors.white, size: 30),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FaIcon(FontAwesomeIcons.shoppingCart,
+                  color: Colors.white, size: 30),
+            ),
+          ],
+          animationDuration: Duration(milliseconds: 200),
+          animationCurve: Curves.bounceInOut,
+          onTap: (index) {
+            navBarOnTap(index);
+          },
+        ),
       ),
     );
   }
