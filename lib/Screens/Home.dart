@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
       body: PageView(
         controller: pageController,
         physics: NeverScrollableScrollPhysics(),
-        children: <Widget>[services(), medicineStore(), Cart()],
+        children: <Widget>[directionToDoctor(), medicineStore(), Cart()],
       ),
       bottomNavigationBar: CurvedNavigationBar(
         index: 1,

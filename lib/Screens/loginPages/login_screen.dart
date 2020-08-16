@@ -30,7 +30,6 @@ class _login_pageState extends State<login_page> {
 
   @override
   void initState() {
-
     emailTextController = new TextEditingController();
     passwordTextController = new TextEditingController();
     ELS = new emaiLogInStateClass();
@@ -61,52 +60,55 @@ class _login_pageState extends State<login_page> {
     ]);
 
     return Scaffold(
-        backgroundColor: Color(0xffF0F0F0),
+        backgroundColor: Color(0xffFFFFFF),
         body: ModalProgressHUD(
           inAsyncCall: showSpinner,
           child: SingleChildScrollView(
             child: Container(
-              color: Color(0xffF0F0F0),
+              color: Color(0xffFFFFFF),
               child: Column(
                 children: <Widget>[
                   Container(
                     height: 200,
+                    width: MediaQuery.of(context).size.width,
                     child: Stack(
+                      alignment: Alignment.bottomCenter,
                       children: <Widget>[
-                        Positioned(
-                          right: MediaQuery.of(context).size.width / 2 - 360,
-                          top: 40,
-                          width: MediaQuery.of(context).size.width,
-                          height: 200,
+                        Container(
                           child: FadeAnimation(
-                              1.5,
-                              Text(
-                                'Daktar\nChacha',
-                                style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                        fontSize: 30,
-                                        color: primaryDark,
-                                        fontWeight: FontWeight.w500)),
-                              )),
+                            1.5,
+                            Text(
+                              'Daktar Chacha',
+                              style: GoogleFonts.muli(
+                                textStyle: TextStyle(
+                                    fontSize: 30,
+                                    color: primaryDark,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ),
                         ),
-                        Positioned(
-                          right: MediaQuery.of(context).size.width / 2 - 50,
-                          top: 40,
-                          width: 200,
-                          height: 200,
-                          child: FadeAnimation(
-                              1.5,
-                              FlareActor(
-                                  "assets/animations/doctor_chacha_live_icon.flr",
-                                  alignment: Alignment.center,
-                                  fit: BoxFit.contain,
-                                  animation: "blinking")),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: FadeAnimation(
+                                1.5,
+                                FlareActor(
+                                    "assets/animations/doctor_chacha_live_icon.flr",
+                                    alignment: Alignment.center,
+                                    fit: BoxFit.contain,
+                                    animation: "blinking"),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 30.0, right: 30, bottom: 30),
+                    padding: EdgeInsets.only(left: 30.0, right: 30, bottom: 30, top: 20),
                     child: Column(
                       children: <Widget>[
                         FadeAnimation(
@@ -126,9 +128,14 @@ class _login_pageState extends State<login_page> {
                               child: Column(
                                 children: <Widget>[
                                   loginTextfield(
-                                      hideText: false, labelText: 'email', textController: emailTextController),
+                                      hideText: false,
+                                      labelText: 'email',
+                                      textController: emailTextController),
                                   loginTextfield(
-                                      hideText: true, labelText: 'password', textController: passwordTextController,)
+                                    hideText: true,
+                                    labelText: 'password',
+                                    textController: passwordTextController,
+                                  )
                                 ],
                               ),
                             )),
@@ -153,22 +160,26 @@ class _login_pageState extends State<login_page> {
                             onTap: () {
                               var route = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                new  RegistrationScreen(emailTextController: emailTextController,passwordTextController: passwordTextController,ELS: ELS),
+                                    new RegistrationScreen(
+                                        emailTextController:
+                                            emailTextController,
+                                        passwordTextController:
+                                            passwordTextController,
+                                        ELS: ELS),
                               );
                               Navigator.of(context).push(route);
                             },
-                            child:
-                                loginCustomizedButton(buttonText: 'Sign Up'),
+                            child: loginCustomizedButton(buttonText: 'Sign Up'),
                           ),
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         Observer(
-                          builder: (context){
+                          builder: (context) {
                             return Text(ELS.errorWhileSigningIn,
-                                style:
-                                TextStyle(color: Colors.red, fontSize: 10.0));
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 10.0));
                           },
                         ),
                         SizedBox(
