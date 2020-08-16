@@ -33,7 +33,7 @@ abstract class mapState with Store {
   @action
   Future<void> createDoctorMarker(BuildContext context, double Lat, double Lng) async{
 
-    Uint8List imageData = await getMarker(context, "assets/images/Daktar_is_here.png");
+    Uint8List imageData = await getMarker(context, "assets/images/doctor_location_2.png");
 
     doctorLocation = Marker(
         markerId: MarkerId("doctor"),
@@ -55,7 +55,7 @@ abstract class mapState with Store {
       _controller.animateCamera(
         CameraUpdate.newCameraPosition(
           new CameraPosition(
-            bearing: 192.8334901395799,
+            //bearing: 192.8334901395799,
             target: LatLng(doctorLocation.position.latitude, doctorLocation.position.longitude),
             tilt: 0,
           ),
@@ -91,7 +91,7 @@ abstract class mapState with Store {
     marker = Marker(
         markerId: MarkerId("you"),
         position: latlng,
-        rotation: newLocalData.heading,
+        //rotation: newLocalData.heading,
         draggable: false,
         zIndex: 2,
         flat: true,
@@ -114,7 +114,7 @@ abstract class mapState with Store {
         _controller.animateCamera(
           CameraUpdate.newCameraPosition(
             new CameraPosition(
-              bearing: 192.8334901395799,
+              //bearing: 192.8334901395799,
               target: LatLng(currentLocation.latitude, currentLocation.longitude),
               tilt: 0,
             ),
