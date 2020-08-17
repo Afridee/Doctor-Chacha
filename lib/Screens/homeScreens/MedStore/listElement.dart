@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElementState.dart';
-import 'package:doctor_chacha/widgets/snackBar.dart';
 import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElementFunctionality.dart';
 
 class listElement extends StatefulWidget {

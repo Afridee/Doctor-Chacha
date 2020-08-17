@@ -1,16 +1,18 @@
-import 'dart:async';
-import 'dart:typed_data';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_chacha/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/mapStateManagement.dart';
+import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/Map/mapStateManagement.dart';
 
 class directionToDoctor extends StatefulWidget {
+
+  final GeoPoint doctorLocation;
+
+  const directionToDoctor({Key key,@required this.doctorLocation}) : super(key: key);
+
   @override
   _directionToDoctorState createState() => _directionToDoctorState();
 }
@@ -22,8 +24,8 @@ class _directionToDoctorState extends State<directionToDoctor> {
   @override
   void initState() {
     MS = new  mapStateClass();
-    MS.setInitialPosition(23.873810, 90.428415);
-    MS.createDoctorMarker(context, 23.873810, 90.428415);
+    MS.setInitialPosition(widget.doctorLocation.latitude, widget.doctorLocation.longitude);
+    MS.createDoctorMarker(context, widget.doctorLocation.latitude, widget.doctorLocation.longitude);
     super.initState();
   }
 

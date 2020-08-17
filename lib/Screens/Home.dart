@@ -1,11 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:doctor_chacha/Constants.dart';
+import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/doctorAppointment.dart';
 import 'package:doctor_chacha/Screens/loginPages/loginFunctionalities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/directionToDoctor.dart';
 import 'package:doctor_chacha/Screens/homeScreens/MedStore/medicineStore.dart';
 import 'package:doctor_chacha/Screens/homeScreens/Cart/Cart.dart';
 
@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
         body: PageView(
           controller: pageController,
           physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[directionToDoctor(), medicineStore(), Cart()],
+          children: <Widget>[doctorAppointment(), medicineStore(), Cart()],
         ),
         bottomNavigationBar: CurvedNavigationBar(
           index: 1,
