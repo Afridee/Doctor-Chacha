@@ -1,4 +1,6 @@
 import 'package:doctor_chacha/Constants.dart';
+import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/primary_care_doctor_types.dart';
+import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/specialty_care_doctor_types.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +15,7 @@ class _doctorAppointmentState extends State<doctorAppointment> {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      color: Color(0xffF0F0F0),
+      color: Color(0xfff0f0f0),
       child: Center(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 22.0),
@@ -31,8 +33,18 @@ class _doctorAppointmentState extends State<doctorAppointment> {
                     ),
                 ),
               ),
-              doctorType(img: 'assets/images/primary_doctor.jpg',title: 'Primary Care Doctors',desc: primaryCareDoctorDefinition, func: (){print('primary care');}),
-              doctorType(img: 'assets/images/specialty_doctors.png',title: 'Specialty doctors',desc: specialtyDoctorDefinition, func: (){print('specialty doctor');}),
+              doctorType(img: 'assets/images/primary_doctor.jpg',title: 'Primary Care Doctors',desc: primaryCareDoctorDefinition, func: (){
+                var route = new MaterialPageRoute(
+                  builder: (BuildContext context) => new primary_care_doctor_types(),
+                );
+                Navigator.of(context).push(route);
+              }),
+              doctorType(img: 'assets/images/specialty_doctors.png',title: 'Specialty doctors',desc: specialtyDoctorDefinition, func: (){
+                var route = new MaterialPageRoute(
+                  builder: (BuildContext context) => new specialty_care_doctor_types(),
+                );
+                Navigator.of(context).push(route);
+              }),
             ],
           ),
         ),
