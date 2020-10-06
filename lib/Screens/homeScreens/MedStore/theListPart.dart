@@ -1,10 +1,9 @@
 import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElement.dart';
-import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElementState.dart';
+import 'package:doctor_chacha/models/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_chacha/Screens/homeScreens/MedStore/searchLogic.dart';
 import 'package:doctor_chacha/Animation/FadeAnimation.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
 class theListPart extends StatefulWidget {
   final TextEditingController searchQuery;
@@ -38,7 +37,7 @@ class _theListPartState extends State<theListPart> {
       child: Padding(
         padding: const EdgeInsets.only(bottom: 18.0),
         child: StreamBuilder(
-          stream: Firestore.instance
+          stream: FirebaseFirestore.instance
               .collection('medicines&medkits')
               .orderBy('brandName')
               .snapshots(),
@@ -58,22 +57,14 @@ class _theListPartState extends State<theListPart> {
                   return search(
                           context,
                           query,
-                          snapshot.data.documents[index]['brandName'] +
-                              snapshot.data.documents[index]['manufacturer']+
-                              snapshot.data.documents[index]['dosageDescription'])
+                          snapshot.data.documents[index].get('brandName') +
+                              snapshot.data.documents[index].get('manufacturer') +
+                              snapshot.data.documents[index].get('dosageDescription'))
                       ? FadeAnimation(
                           2,
                           listElement(
-                              brandName: snapshot.data.documents[index]
-                                  ['brandName'],
-                              manufacturer: snapshot.data.documents[index]
-                                  ['manufacturer'],
-                              strength: snapshot.data.documents[index]
-                                  ['strength'],
-                              dosageDescription: snapshot.data.documents[index]
-                                  ['dosageDescription'],
-                              price: snapshot.data.documents[index]['price'],
-                              unit: snapshot.data.documents[index]['unit']),
+                            productModel: ProductModel.fromJson(snapshot.data.documents[index].data()),
+                          ),
                         )
                       : Container();
                 },

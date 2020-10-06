@@ -1,44 +1,44 @@
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hive/hive.dart';
 
-Future<bool> add(DocumentReference item) async{
-
-  int qty;
+bool add(String itemName, int qty){
 
   try{
-    await item.get().then((doc) {
-      qty = doc.data['qty'];
-    });
 
-    await item.setData({
-      'qty' : qty+1
-    }, merge: true);
+    Box<Map> cartBox = Hive.box<Map>("cart");
+
+    cartBox.put(itemName, {
+      'qty' : qty + 1,
+      'productDetails' : cartBox.get(itemName)['productDetails']
+    });
 
     return true;
   }catch(e){
+    print(e);
     return false;
   }
 }
 
-Future<bool> remove(DocumentReference item) async{
-
-  int qty;
+bool remove(String itemName, int qty){
 
   try{
-    await item.get().then((doc) {
-      qty = doc.data['qty'];
-    });
 
-    if(qty<=1){
-      item.delete();
+    Box<Map> cartBox = Hive.box<Map>("cart");
+
+
+
+    if(qty==1){
+      cartBox.delete(itemName);
     }else{
-      await item.setData({
-        'qty' : qty-1
-      }, merge: true);
+      cartBox.put(itemName, {
+        'qty' : qty - 1,
+        'productDetails' : (cartBox.get(itemName))['productDetails']
+      });
     }
 
     return true;
+
   }catch(e){
+    print(e);
     return false;
   }
 }

@@ -57,42 +57,35 @@ class _cartListItemState extends State<cartListItem> {
        Expanded(
          flex: 2,
          child: Container(
-           child: Observer(builder: (context){
-             return !CIS.itemSpinner? Row(
-               children: <Widget>[
-                 Container(
-                   child: IconButton(
-                     color: primaryDark,
-                     icon: Icon(Icons.add_circle),
-                     onPressed: () async{
-                       CIS.resetItemSpinner();
-                       final DocumentReference  cartItem = Firestore.instance.document('users/${widget.CS.userID}/cart/${widget.brandName}');
-                       bool updated = await add(cartItem);
-                       if(updated){
-                         widget.CS.updateTotalCost('add', widget.price.toDouble());
-                       }
-                       CIS.resetItemSpinner();
-                     },
-                   ),
+           child: Row(
+             children: <Widget>[
+               Container(
+                 child: IconButton(
+                   color: primaryDark,
+                   icon: Icon(Icons.add_circle),
+                   onPressed: () {
+                     bool updated = add(widget.brandName, widget.qty);
+                     if(updated){
+                       widget.CS.updateTotalCost('add', widget.price.toDouble());
+                     }
+                   },
                  ),
-                 Container(
-                   child: IconButton(
-                     color: primaryDark,
-                     icon: Icon(Icons.remove_circle),
-                     onPressed: () async{
-                       CIS.resetItemSpinner();
-                       final DocumentReference  cartItem = Firestore.instance.document('users/${widget.CS.userID}/cart/${widget.brandName}');
-                       bool updated = await remove(cartItem);
-                       if(updated){
-                         widget.CS.updateTotalCost('deduct', widget.price.toDouble());
-                       }
-                       CIS.resetItemSpinner();
-                     },
-                   ),
-                 )
-               ],
-             ) : Center(child: CircularProgressIndicator());
-           }),
+               ),
+               Container(
+                 child: IconButton(
+                   color: primaryDark,
+                   icon: Icon(Icons.remove_circle),
+                   onPressed: () async{
+                     final DocumentReference  cartItem = Firestore.instance.document('users/${widget.CS.userID}/cart/${widget.brandName}');
+                     bool updated = remove(widget.brandName, widget.qty);
+                     if(updated){
+                       widget.CS.updateTotalCost('deduct', widget.price.toDouble());
+                     }
+                   },
+                 ),
+               )
+             ],
+           ),
          ),
        ),
       ],

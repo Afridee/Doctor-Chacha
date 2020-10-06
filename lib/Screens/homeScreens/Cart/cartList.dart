@@ -4,6 +4,8 @@ import 'package:doctor_chacha/Screens/homeScreens/Cart/cartListElement.dart';
 import 'package:doctor_chacha/Screens/homeScreens/Cart/cartStateManagement.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class CartList extends StatefulWidget {
   const CartList({
@@ -16,11 +18,13 @@ class CartList extends StatefulWidget {
 
 class _CartListState extends State<CartList> {
   cartStateClass CS;
+  Box<Map> cartBox;
 
   @override
   void initState() {
     CS = new cartStateClass();
     CS.getUserID(context);
+    cartBox = Hive.box<Map>("cart");
     super.initState();
   }
 
@@ -34,63 +38,46 @@ class _CartListState extends State<CartList> {
           topRight: Radius.circular(30),
         ),
       ),
-      child: Observer(builder: (context) {
-        return CS.userID.length > 0
-            ? StreamBuilder(
-                stream: Firestore.instance
-                    .collection('users/' + CS.userID + '/cart')
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: Container(
-                        height: 100,
-                        width: 100,
-                        child: CircularProgressIndicator(),
+      child: ValueListenableBuilder(
+        valueListenable: cartBox.listenable(),
+        builder: (context, Box<Map> cart, _){
+         return ListView.separated(
+            separatorBuilder: (_, index) => Divider(),
+            itemCount: cart.keys.toList().length + 1,
+            itemBuilder: (context, index) {
+              if (index == cart.keys.toList().length) {
+                return cart.keys.toList().length!=0? Column(
+                  children: [
+                    Text(
+                      'Discount: 0%',
+                      style: TextStyle(
+                        color: primaryDark,
+                        fontSize: 20,
                       ),
-                    );
-                  } else if (snapshot.hasData && snapshot.data != null) {
-                    return ListView.builder(
-                      itemCount: snapshot.data.documents.length + 1,
-                      itemBuilder: (context, index) {
-                        if (index == snapshot.data.documents.length) {
-                          return snapshot.data.documents.length!=0? Column(
-                            children: [
-                              Text(
-                                'Discount: 0%',
-                                style: TextStyle(
-                                  color: primaryDark,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              Observer(
-                                builder: (context){
-                                  return Text(
-                                    'Total: '+ CS.totalCost.toStringAsFixed(2),
-                                    style: TextStyle(
-                                        color: primaryDark,
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.w700),
-                                  );
-                                },
-                              ),
-                            ],
-                          ) : Container();
-                        }
-                        return cartListItem(
-                             CS: CS,
-                            brandName: snapshot.data.documents[index]
-                                ['brandName'],
-                            qty: snapshot.data.documents[index]['qty'],
-                            price: snapshot.data.documents[index]['price']);
+                    ),
+                    Observer(
+                      builder: (context){
+                        return Text(
+                          'Total: '+ CS.totalCost.toStringAsFixed(2),
+                          style: TextStyle(
+                              color: primaryDark,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w700),
+                        );
                       },
-                    );
-                  }
-                  return Container();
-                },
-              )
-            : Container();
-      }),
+                    ),
+                  ],
+                ) : Container();
+              }
+              return cartListItem(
+                  CS: CS,
+                  brandName: cart.keys.toList()[index],
+                  qty: cart.get(cart.keys.toList()[index])['qty'],
+                  price: cart.get(cart.keys.toList()[index])['productDetails']['price']);
+            },
+          );
+        },
+      ),
     );
   }
 }

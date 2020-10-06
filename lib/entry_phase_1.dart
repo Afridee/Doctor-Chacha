@@ -1,4 +1,5 @@
 
+import 'package:doctor_chacha/Screens/Home.dart';
 import 'package:doctor_chacha/Screens/loginPages/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class _entry_phase_1State extends State<entry_phase_1> {
       builder: (_, AsyncSnapshot<User> snapshot){
         if(snapshot.connectionState == ConnectionState.active){
           final User user = snapshot.data;
-          return user == null? login_page() : onboarding_Screen_slider();
+          return user == null? login_page() : (auth.userInfoGiven? Home() : onboarding_Screen_slider());
         }else{
           return Scaffold(
               body: Container(

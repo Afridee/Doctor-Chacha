@@ -8,7 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 Done(BuildContext context, String first_name, String last_name, String phoneNumber, String address, bool male) async{
 
   final auth = FirebaseAuth.instance;
-  final FirebaseUser user = await auth.currentUser();
+  final User user = auth.currentUser;
   String userID = user.uid;
 
     if(first_name.length>0 &&
@@ -16,15 +16,15 @@ Done(BuildContext context, String first_name, String last_name, String phoneNumb
        phoneNumber.length>0 &&
        address.length>0){
 
-       final CollectionReference users = Firestore.instance.collection('users');
+       final CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-       await users.document(userID).setData({
+       await users.doc(userID).set({
          'first_name' : first_name,
          'last_name' : last_name,
          'phone_number' : phoneNumber,
          'address' : address,
          'male' : male
-       }, merge: true);
+       },);
 
        var route = new MaterialPageRoute(
          builder: (BuildContext context) => new Home(),

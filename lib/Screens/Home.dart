@@ -3,6 +3,7 @@ import 'package:doctor_chacha/Constants.dart';
 import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/doctorAppointment.dart';
 import 'package:doctor_chacha/Screens/homeStateManagement.dart';
 import 'package:doctor_chacha/Screens/loginPages/loginFunctionalities.dart';
+import 'package:doctor_chacha/widgets/Drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -82,12 +83,7 @@ class _HomeState extends State<Home> {
                     },
                   )
                 ]),
-            drawer: Drawer(
-              elevation: 0.0,
-              child: Container(
-                decoration: BoxDecoration(color: primaryDark),
-              ),
-            ),
+            drawer: mainDrawer(),
             body: PageView(
               controller: pageController,
               physics: NeverScrollableScrollPhysics(),

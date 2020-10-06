@@ -1,26 +1,17 @@
 import 'package:doctor_chacha/Constants.dart';
+import 'package:doctor_chacha/models/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElementState.dart';
 import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElementFunctionality.dart';
 
+
 class listElement extends StatefulWidget {
-  final String brandName;
-  final String manufacturer;
-  final String strength;
-  final String dosageDescription;
-  final String unit;
-  final price;
+   final ProductModel productModel;
 
   const listElement({
-    Key key,
-    @required this.brandName,
-    @required this.manufacturer,
-    @required this.strength,
-    @required this.dosageDescription,
-    @required this.price,
-    @required this.unit,
+    Key key, this.productModel,
   }) : super(key: key);
 
   @override
@@ -43,7 +34,7 @@ class _listElementState extends State<listElement> with SingleTickerProviderStat
     )..addListener((){
       setState(() {});
     });
-    super.initState();
+     super.initState();
   }
 
   @override
@@ -65,7 +56,7 @@ class _listElementState extends State<listElement> with SingleTickerProviderStat
               title: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  widget.brandName,
+                  widget.productModel.brandName,
                   style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
                 ),
               ),
@@ -75,11 +66,11 @@ class _listElementState extends State<listElement> with SingleTickerProviderStat
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Manufacturer: ${widget.manufacturer}\nStrength: ${widget.strength}\nDosage description: ${widget.dosageDescription}\nUnit: ${widget.unit}',
+                      'Manufacturer: ${widget.productModel.manufacturer}\nStrength: ${widget.productModel.strength}\nDosage description: ${widget.productModel.dosageDescription}\nUnit: ${widget.productModel..unit}',
                       style: TextStyle(color: Colors.grey, fontSize: 13),
                     ),
                     Text(
-                      '৳' + widget.price.toString(),
+                      '৳' + widget.productModel.price.toString(),
                       style: TextStyle(color: Colors.green, fontSize: 18),
                     ),
                   ],
@@ -89,15 +80,11 @@ class _listElementState extends State<listElement> with SingleTickerProviderStat
                 onTap: () async{
                   //bounce animation:
                   await _addButtonAnimationController.forward();
-                  _addButtonAnimationController.reverse();
+                        _addButtonAnimationController.reverse();
                   //Add this Item to Cart:
                    addToCart(
                        context: context,
-                       brandName: widget.brandName,
-                       manufacturer: widget.manufacturer,
-                       strength: widget.strength,
-                       price: widget.price,
-                       unit: widget.unit,
+                       productModel: widget.productModel,
                        qty: LIS.qty);
                 },
                 child: Padding(

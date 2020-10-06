@@ -9,10 +9,10 @@ import 'package:flutter/material.dart';
    bool userInfoexists;
 
   final auth = FirebaseAuth.instance;
-  final FirebaseUser user = await auth.currentUser();
+  final User user = auth.currentUser;
   String userID = user.uid;
 
-  await Firestore.instance.document('users/${userID}').get().then((onexist) {
+  await FirebaseFirestore.instance.doc('users/$userID').get().then((onexist) {
     onexist.exists ? userInfoexists = true : userInfoexists = false;
   });
 
