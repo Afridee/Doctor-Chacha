@@ -1,14 +1,21 @@
 import 'package:doctor_chacha/Constants.dart';
 import 'package:doctor_chacha/Screens/info_form/infoFormStateManagement.dart';
+import 'package:doctor_chacha/Screens/loginPages/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:doctor_chacha/Screens/info_form/formTextfield.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:provider/provider.dart';
 import 'form_submission.dart';
 
 class infoForm extends StatefulWidget {
+
+  final  String title;
+
+  const infoForm({Key key,@required this.title}) : super(key: key);
+
   @override
   _infoFormState createState() => _infoFormState();
 }
@@ -27,6 +34,19 @@ class _infoFormState extends State<infoForm> {
     _lastName = new TextEditingController();
     _phoneNumber = new TextEditingController();
     _Address = new TextEditingController();
+
+    final auth = Provider.of<FirebaseAuthService>(context, listen: false);
+
+    if(auth.userInfo!=null){
+      _firstName.text = auth.userInfo['first_name'];
+      _lastName.text = auth.userInfo['last_name'];
+      _phoneNumber.text = auth.userInfo['phone_number'];
+      _Address.text = auth.userInfo['address'];
+      if(!auth.userInfo['male']){
+        gS.change_gender.call();
+      }
+    }
+
     super.initState();
   }
 
@@ -59,12 +79,19 @@ class _infoFormState extends State<infoForm> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      'Please provide us with these informations to complete your Profile.',
-                      style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w700
-                      ),
+                    child: Row(
+                      children: [
+                        IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
+                          Navigator.of(context).pop();
+                        }),
+                        Text(
+                          widget.title,
+                          style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w700
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   formTextfield(

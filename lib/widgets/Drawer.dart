@@ -1,3 +1,4 @@
+import 'package:doctor_chacha/Screens/info_form/info_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../Constants.dart';
@@ -70,7 +71,7 @@ class _mainDrawerState extends State<mainDrawer> {
                     ListTile(
                       leading: Icon(Icons.copy),
                       title: Text(
-                        'My Orders',
+                        'My Records',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.white,
@@ -88,7 +89,10 @@ class _mainDrawerState extends State<mainDrawer> {
                         ),
                       ),
                       onTap: () {
-
+                        var route = new MaterialPageRoute(
+                          builder: (BuildContext context) => new infoForm(title: 'Edit profile'),
+                        );
+                        Navigator.of(context).push(route);
                       },
                     ),
                     ListTile(

@@ -5,9 +5,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'loginScreenStateManagement.dart';
+
 class bottomLoginMethods extends StatefulWidget {
+
+  final loginScreenStateClass LS;
+
   const bottomLoginMethods({
-    Key key,
+    Key key,@required this.LS,
   }) : super(key: key);
 
   @override
@@ -27,6 +32,7 @@ class _bottomLoginMethodsState extends State<bottomLoginMethods> {
               color: Colors.blueAccent,
               iconSize: 40,
               onPressed: () async {
+                widget.LS.setSpinner();
                 LogInWithFacebook(context);
               },
             ),
@@ -41,6 +47,7 @@ class _bottomLoginMethodsState extends State<bottomLoginMethods> {
                 color: Colors.red,
                 iconSize: 40,
                 onPressed: () async {
+                  widget.LS.setSpinner();
                   LogInWIthGoogle(context);
                 }),
             Text('Google')

@@ -24,7 +24,7 @@ import 'package:flutter/material.dart';
 afterOnboardingScreens(BuildContext context, bool userInfoexists) async {
   if(!userInfoexists){
     var route = new MaterialPageRoute(
-      builder: (BuildContext context) => new infoForm(),
+      builder: (BuildContext context) => new infoForm(title: 'Please provide us with these informations to complete your Profile.'),
     );
     Navigator.of(context).push(route);
   }else if(userInfoexists!=null){
