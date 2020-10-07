@@ -1,9 +1,9 @@
-import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElement.dart';
-import 'package:doctor_chacha/models/productModel.dart';
+import '../../../Screens/homeScreens/MedStore/listElement.dart';
+import '../../../models/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctor_chacha/Screens/homeScreens/MedStore/searchLogic.dart';
-import 'package:doctor_chacha/Animation/FadeAnimation.dart';
+import '../../../Screens/homeScreens/MedStore/searchLogic.dart';
+import '../../../Animation/FadeAnimation.dart';
 
 class theListPart extends StatefulWidget {
   final TextEditingController searchQuery;

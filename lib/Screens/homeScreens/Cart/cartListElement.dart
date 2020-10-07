@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctor_chacha/Constants.dart';
+import '../../../Constants.dart';
 import 'package:flutter/material.dart';
-import 'package:doctor_chacha/Screens/homeScreens/Cart/cartStateManagement.dart';
-import 'package:doctor_chacha/Screens/homeScreens/Cart/cartListElementFunctionality.dart';
+import 'cartStateManagement.dart';
+import 'cartListElementFunctionality.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class cartListItem extends StatefulWidget {

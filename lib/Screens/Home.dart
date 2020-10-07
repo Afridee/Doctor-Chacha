@@ -1,16 +1,16 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/doctorAppointment.dart';
-import 'package:doctor_chacha/Screens/homeStateManagement.dart';
-import 'package:doctor_chacha/Screens/loginPages/loginFunctionalities.dart';
-import 'package:doctor_chacha/widgets/Drawer.dart';
+import '../Constants.dart';
+import '../Screens/homeScreens/doctorAppointment/doctorAppointment.dart';
+import '../Screens/homeStateManagement.dart';
+import '../Screens/loginPages/loginFunctionalities.dart';
+import '../widgets/Drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:doctor_chacha/Screens/homeScreens/MedStore/medicineStore.dart';
-import 'package:doctor_chacha/Screens/homeScreens/Cart/Cart.dart';
+import '../Screens/homeScreens/MedStore/medicineStore.dart';
+import '../Screens/homeScreens/Cart/Cart.dart';
 
 class Home extends StatefulWidget {
   @override

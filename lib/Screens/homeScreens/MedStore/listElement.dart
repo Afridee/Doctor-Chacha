@@ -1,10 +1,10 @@
-import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/models/productModel.dart';
+import '../../../Constants.dart';
+import '../../../models/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElementState.dart';
-import 'package:doctor_chacha/Screens/homeScreens/MedStore/listElementFunctionality.dart';
+import '../../../Screens/homeScreens/MedStore/listElementState.dart';
+import '../../../Screens/homeScreens/MedStore/listElementFunctionality.dart';
 
 
 class listElement extends StatefulWidget {

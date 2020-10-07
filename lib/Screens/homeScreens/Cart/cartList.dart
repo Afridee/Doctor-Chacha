@@ -1,7 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/Screens/homeScreens/Cart/cartListElement.dart';
-import 'package:doctor_chacha/Screens/homeScreens/Cart/cartStateManagement.dart';
+import '../../../Constants.dart';
+import 'cartListElement.dart';
+import 'cartStateManagement.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:hive/hive.dart';

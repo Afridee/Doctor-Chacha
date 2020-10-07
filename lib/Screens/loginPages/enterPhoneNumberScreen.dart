@@ -1,10 +1,10 @@
-import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/Screens/loginPages/loginButtonStyles.dart';
-import 'package:doctor_chacha/Screens/loginPages/loginTextFields.dart';
+import '../../Constants.dart';
+import 'loginButtonStyles.dart';
+import 'loginTextFields.dart';
 import 'package:flutter/material.dart';
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:doctor_chacha/Screens/loginPages/phoneNumberStateManagement.dart';
-import 'package:doctor_chacha/Screens/loginPages/loginFunctionalities.dart';
+import 'phoneNumberStateManagement.dart';
+import 'loginFunctionalities.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 

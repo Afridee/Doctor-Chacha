@@ -1,11 +1,11 @@
-import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/Screens/info_form/infoFormStateManagement.dart';
-import 'package:doctor_chacha/Screens/loginPages/firebase_auth_service.dart';
+import '../../Constants.dart';
+import '../../Screens/info_form/infoFormStateManagement.dart';
+import '../../Screens/loginPages/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:doctor_chacha/Screens/info_form/formTextfield.dart';
+import '../../Screens/info_form/formTextfield.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 import 'form_submission.dart';

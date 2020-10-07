@@ -1,5 +1,5 @@
-import  'package:doctor_chacha/Screens/Home.dart';
-import 'package:doctor_chacha/Screens/info_form/info_form.dart';
+import  '../../Screens/Home.dart';
+import '../../Screens/info_form/info_form.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

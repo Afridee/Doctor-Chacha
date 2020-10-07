@@ -1,5 +1,5 @@
-import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/subTypeDoctorElement.dart';
+import '../../../Constants.dart';
+import '../../../Screens/homeScreens/doctorAppointment/subTypeDoctorElement.dart';
 import 'package:flutter/material.dart';
 
 class primary_care_doctor_types extends StatefulWidget {

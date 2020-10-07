@@ -1,15 +1,15 @@
-import 'package:doctor_chacha/Screens/loginPages/RegistrationScreen.dart';
-import 'package:doctor_chacha/Screens/loginPages/bottomLoginMethods.dart';
-import 'package:doctor_chacha/Screens/loginPages/emaiLogInStateManagement.dart';
-import 'package:doctor_chacha/Screens/loginPages/loginButtonStyles.dart';
-import 'package:doctor_chacha/Screens/loginPages/loginFunctionalities.dart';
-import 'package:doctor_chacha/Screens/loginPages/loginTextFields.dart';
+import 'RegistrationScreen.dart';
+import 'bottomLoginMethods.dart';
+import 'emaiLogInStateManagement.dart';
+import 'loginButtonStyles.dart';
+import 'loginFunctionalities.dart';
+import 'loginTextFields.dart';
 import 'package:flutter/services.dart';
-import 'package:doctor_chacha/Animation/FadeAnimation.dart';
+import '../../Animation/FadeAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:doctor_chacha/Constants.dart';
+import '../../Constants.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:google_fonts/google_fonts.dart';
 

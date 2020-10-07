@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/Screens/homeScreens/Cart/cartList.dart';
-import 'package:doctor_chacha/Screens/homeScreens/Cart/confirmPart.dart';
-import 'package:doctor_chacha/Screens/homeScreens/Cart/couponPart.dart';
+import 'cartList.dart';
+import 'confirmPart.dart';
+import 'couponPart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 

@@ -1,5 +1,5 @@
-import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/doctorList.dart';
+import '../../../Constants.dart';
+import '../../../Screens/homeScreens/doctorAppointment/doctorList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
 
-import 'package:doctor_chacha/Screens/onboardingScreen/onboardingScreenFunctions.dart';
+import '../../Screens/onboardingScreen/onboardingScreenFunctions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';

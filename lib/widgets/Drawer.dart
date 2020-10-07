@@ -1,4 +1,4 @@
-import 'package:doctor_chacha/Screens/info_form/info_form.dart';
+import '../Screens/info_form/info_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../Constants.dart';

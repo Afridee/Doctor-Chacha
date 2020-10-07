@@ -1,4 +1,4 @@
-import 'package:doctor_chacha/Constants.dart';
+import '../../Constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

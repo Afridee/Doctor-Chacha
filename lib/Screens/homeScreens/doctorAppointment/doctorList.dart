@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/subTypeDoctorElement.dart';
+import '../../../Constants.dart';
 
 
 class doctorList extends StatefulWidget {

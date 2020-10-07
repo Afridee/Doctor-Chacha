@@ -1,4 +1,4 @@
-import 'package:doctor_chacha/Screens/Home.dart';
+import '../../Screens/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

@@ -1,8 +1,8 @@
 import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/Screens/loginPages/emaiLogInStateManagement.dart';
-import 'package:doctor_chacha/Screens/loginPages/loginButtonStyles.dart';
-import 'package:doctor_chacha/Screens/loginPages/loginFunctionalities.dart';
-import 'package:doctor_chacha/Screens/loginPages/loginTextFields.dart';
+import 'emaiLogInStateManagement.dart';
+import 'loginButtonStyles.dart';
+import 'loginFunctionalities.dart';
+import 'loginTextFields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 

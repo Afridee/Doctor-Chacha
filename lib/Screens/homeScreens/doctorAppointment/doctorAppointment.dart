@@ -1,6 +1,6 @@
-import 'package:doctor_chacha/Constants.dart';
-import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/primary_care_doctor_types.dart';
-import 'package:doctor_chacha/Screens/homeScreens/doctorAppointment/specialty_care_doctor_types.dart';
+import '../../../Constants.dart';
+import '../../../Screens/homeScreens/doctorAppointment/primary_care_doctor_types.dart';
+import '../../../Screens/homeScreens/doctorAppointment/specialty_care_doctor_types.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

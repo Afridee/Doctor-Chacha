@@ -1,10 +1,8 @@
-import 'package:doctor_chacha/models/productModel.dart';
-import 'package:doctor_chacha/widgets/snackBar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import '../../../models/productModel.dart';
+import '../../../widgets/snackBar.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:doctor_chacha/Constants.dart';
+import '../../../Constants.dart';
 import 'package:hive/hive.dart';
 
 void addToCart({BuildContext context,ProductModel productModel, int qty}) async{
