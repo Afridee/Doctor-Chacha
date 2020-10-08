@@ -38,7 +38,7 @@ class subTypeDoctorElement extends StatelessWidget {
             color: primaryLight,
             onPressed: () {
               var route = new MaterialPageRoute(
-                builder: (BuildContext context) => new doctorList(),
+                builder: (BuildContext context) => new doctorList(subCatergory: title),
               );
               Navigator.of(context).push(route);
             },

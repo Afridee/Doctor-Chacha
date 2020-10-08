@@ -11,6 +11,7 @@ abstract class homeState with Store{
 
   @action
   void setTitlse(int i){
+
     switch(i) {
       case 0: {  title = 'Set Doctor Appointment'; }
       break;

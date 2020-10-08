@@ -38,6 +38,28 @@ class _directionToDoctorState extends State<directionToDoctor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              size: 30,
+              color: Colors.black54,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+                Colors.white,
+                Colors.white,
+              ]),
+            ),
+          ),
+        ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,

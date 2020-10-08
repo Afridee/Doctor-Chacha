@@ -192,14 +192,23 @@ class _login_pageState extends State<login_page> {
                           ),
                           FadeAnimation(
                             1.5,
-                            InkWell(
-                              child: Text(
-                                "Forgot Password? Click here",
-                                style: TextStyle(
-                                    color: primaryDark,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              onTap: () {},
+                            RichText(
+                              text: TextSpan(
+                                  style: TextStyle(fontSize: 16, color: Colors.black54),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: 'Forgot your password? ',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.bold
+                                          ),
+                                    ),
+                                    TextSpan(
+                                      text: 'Click Here',
+                                      style: TextStyle(fontSize: 16, color: primaryDark,fontWeight: FontWeight.bold),
+                                    )
+                                  ]),
                             ),
                           ),
                           SizedBox(
