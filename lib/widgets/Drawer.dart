@@ -1,3 +1,5 @@
+import 'package:doctor_chacha/Screens/otherServices/other_services.dart';
+
 import '../Screens/info_form/info_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -96,15 +98,20 @@ class _mainDrawerState extends State<mainDrawer> {
                       },
                     ),
                     ListTile(
-                      leading: Icon(Icons.location_on),
+                      leading: Icon(Icons.medical_services),
                       title: Text(
-                        'My address',
+                        'Other services',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.white,
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        var route = new MaterialPageRoute(
+                          builder: (BuildContext context) => new OtherServices(),
+                        );
+                        Navigator.of(context).push(route);
+                      },
                     ),
                     ListTile(
                       leading: Icon(Icons.security),

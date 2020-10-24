@@ -1,3 +1,6 @@
+import 'package:doctor_chacha/Screens/loginPages/firebase_auth_service.dart';
+import 'package:provider/provider.dart';
+
 import '../../Screens/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,9 +10,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 Done(BuildContext context, String first_name, String last_name, String phoneNumber, String address, bool male) async{
 
-  final auth = FirebaseAuth.instance;
-  final User user = auth.currentUser;
-  String userID = user.uid;
+  final auth = Provider.of<FirebaseAuthService>(context, listen: false);
+
+  String userID = auth.userID;
 
     if(first_name.length>0 &&
        last_name.length>0 &&
@@ -25,6 +28,8 @@ Done(BuildContext context, String first_name, String last_name, String phoneNumb
          'address' : address,
          'male' : male
        },);
+
+       auth.getCurrentUserINFO();
 
        var route = new MaterialPageRoute(
          builder: (BuildContext context) => new Home(),

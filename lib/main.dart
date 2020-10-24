@@ -13,6 +13,7 @@ void main() async{
   await Firebase.initializeApp();
   Directory Document = await getApplicationDocumentsDirectory();
   Hive.init(Document.path);
+  await Hive.openBox<Map>('todoBox');
   await Hive.openBox<Map>('cart');
   runApp(MyApp());
 }

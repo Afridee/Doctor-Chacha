@@ -25,11 +25,11 @@ class _infoFormState extends State<infoForm> {
   TextEditingController _lastName;
   TextEditingController _phoneNumber;
   TextEditingController _Address;
-  formStates gS;
+  formStatesClass gS;
 
   @override
   void initState() {
-    gS = new formStates();
+    gS = new formStatesClass();
     _firstName = new TextEditingController();
     _lastName = new TextEditingController();
     _phoneNumber = new TextEditingController();
@@ -69,7 +69,7 @@ class _infoFormState extends State<infoForm> {
       body: Observer(
         builder: (context){
           return ModalProgressHUD(
-            inAsyncCall: gS.spinner.value,
+            inAsyncCall: gS.spinner,
             color: primaryDark,
             child: Container(
               width: MediaQuery.of(context).size.width,
@@ -123,7 +123,7 @@ class _infoFormState extends State<infoForm> {
                         ),
                         Text('Male'),
                         Checkbox(
-                          value: gS.male.value,
+                          value: gS.male,
                           onChanged: (value) {
                             gS.change_gender.call();
                           },
@@ -131,9 +131,9 @@ class _infoFormState extends State<infoForm> {
                         Text('Female'),
                         Checkbox(
                           activeColor: Colors.pink,
-                          value: !gS.male.value,
+                          value: !gS.male,
                           onChanged: (value) {
-                            gS.change_gender.call();
+                            gS.change_gender();
                           },
                         )
                       ],
@@ -143,8 +143,8 @@ class _infoFormState extends State<infoForm> {
                     padding: const EdgeInsets.all(20.0),
                     child: InkWell(
                       onTap: () async {
-                        gS.showSpinner.call();
-                        Done(context, _firstName.text, _lastName.text, _phoneNumber.text, _Address.text, gS.male.value);
+                        gS.showSpinner();
+                        Done(context, _firstName.text, _lastName.text, _phoneNumber.text, _Address.text, gS.male);
                       },
                       child: Container(
                         height: 50,

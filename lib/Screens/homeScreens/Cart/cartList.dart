@@ -7,8 +7,11 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class CartList extends StatefulWidget {
+
+  final cartStateClass CS;
+
   const CartList({
-    Key key,
+    Key key,@required this.CS,
   }) : super(key: key);
 
   @override
@@ -16,13 +19,11 @@ class CartList extends StatefulWidget {
 }
 
 class _CartListState extends State<CartList> {
-  cartStateClass CS;
+
   Box<Map> cartBox;
 
   @override
   void initState() {
-    CS = new cartStateClass();
-    CS.getUserID(context);
     cartBox = Hive.box<Map>("cart");
     super.initState();
   }
@@ -57,7 +58,7 @@ class _CartListState extends State<CartList> {
                     Observer(
                       builder: (context){
                         return Text(
-                          'Total: '+ CS.totalCost.toStringAsFixed(2),
+                          'Total: '+ widget.CS.totalCost.toStringAsFixed(2),
                           style: TextStyle(
                               color: primaryDark,
                               fontSize: 30,
@@ -69,7 +70,7 @@ class _CartListState extends State<CartList> {
                 ) : Container();
               }
               return cartListItem(
-                  CS: CS,
+                  CS: widget.CS,
                   brandName: cart.keys.toList()[index],
                   qty: cart.get(cart.keys.toList()[index])['qty'],
                   price: cart.get(cart.keys.toList()[index])['productDetails']['price']);

@@ -1,4 +1,5 @@
 import 'cartList.dart';
+import 'cartStateManagement.dart';
 import 'confirmPart.dart';
 import 'couponPart.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,15 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
+
+  cartStateClass CS;
+
+  @override
+  void initState() {
+    CS = new cartStateClass();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,9 +33,9 @@ class _CartState extends State<Cart> {
         children: [
           Expanded(child: couponPart(), flex: 1),
           Expanded(
-              child: CartList(),
+              child: CartList(CS: CS,),
               flex: 6),
-          Expanded(child: confirmPart(), flex: 1)
+          Expanded(child: confirmPart(CS: CS), flex: 1)
         ],
       ),
     );

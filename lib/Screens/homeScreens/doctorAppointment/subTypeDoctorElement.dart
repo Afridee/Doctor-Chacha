@@ -34,7 +34,7 @@ class subTypeDoctorElement extends StatelessWidget {
           subtitle: Text(subtitle,
               style: TextStyle(color: Colors.white, fontSize: 10)),
           trailing: IconButton(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.list, size: 35,),
             color: primaryLight,
             onPressed: () {
               var route = new MaterialPageRoute(

@@ -1,23 +1,25 @@
 import 'package:mobx/mobx.dart';
 
-class formStates{
+part 'infoFormStateManagement.g.dart';
 
-  Observable male = Observable(true);
-  Observable spinner = Observable(false);
-  
-  Action change_gender;
-  Action showSpinner;
+class formStatesClass = formStates with _$formStatesClass;
 
-  formStates(){
+abstract class formStates with Store{
 
-    change_gender = Action((){
-       male.value = !male.value;
-    });
+  @observable
+  bool male = true;
 
-    showSpinner = Action((){
-      spinner.value = !spinner.value;
-    });
+  @observable
+  bool spinner = false;
 
+  @action
+  change_gender(){
+    male = !male;
+  }
+
+  @action
+  showSpinner(){
+    spinner = !spinner;
   }
 
 }

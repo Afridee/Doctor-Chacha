@@ -76,7 +76,6 @@ class _cartListItemState extends State<cartListItem> {
                    color: primaryDark,
                    icon: Icon(Icons.remove_circle),
                    onPressed: () async{
-                     final DocumentReference  cartItem = Firestore.instance.document('users/${widget.CS.userID}/cart/${widget.brandName}');
                      bool updated = remove(widget.brandName, widget.qty);
                      if(updated){
                        widget.CS.updateTotalCost('deduct', widget.price.toDouble());
