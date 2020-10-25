@@ -1,3 +1,5 @@
+import 'package:doctor_chacha/Constants.dart';
+
 import 'AddPage.dart';
 import 'toDoList.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,8 +36,8 @@ class _toDoState extends State<toDo> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xff3499ff),
-                    Color(0xff3a3985),
+                    primaryLight,
+                    primaryDark,
                   ],
                 ),
               ),
@@ -130,7 +132,7 @@ class _toDoState extends State<toDo> {
           Navigator.of(context).push(route);
         },
         child: Icon(Icons.add),
-        backgroundColor: Color(0xff3a3985),
+        backgroundColor: primaryDark,
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:doctor_chacha/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -121,7 +122,7 @@ class _addPageState extends State<addPage> {
                       width: 70,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xff3499ff)),
+                          color: primaryDark),
                       child: IconButton(
                         icon: Icon(Icons.calendar_today),
                         iconSize: 25,
@@ -146,7 +147,7 @@ class _addPageState extends State<addPage> {
                             '\nTo:  ' +
                             DateFormat('yyyy-MM-dd').format(context.dateList.last)
                             : '',
-                        style: TextStyle(fontSize: 20, color: Color(0xff3499ff)), textAlign: TextAlign.center,);
+                        style: TextStyle(fontSize: 17, color: primaryDark), textAlign: TextAlign.center,);
                     },
                   ),
                 ),
@@ -165,7 +166,7 @@ class _addPageState extends State<addPage> {
                       width: 70,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xff3499ff)),
+                          color: primaryDark),
                       child: IconButton(
                         icon: Icon(Icons.watch_later),
                         iconSize: 25,
@@ -187,7 +188,7 @@ class _addPageState extends State<addPage> {
                         context.selectedTime != null
                             ? '${context.selectedTime.hour} : ${context.selectedTime.minute}'
                             : '',
-                        style: TextStyle(fontSize: 20, color: Color(0xff3499ff)), textAlign: TextAlign.center,);
+                        style: TextStyle(fontSize: 20, color: primaryDark), textAlign: TextAlign.center,);
                     },
                   ),
                 ),
@@ -268,7 +269,7 @@ class _addPageState extends State<addPage> {
                        ),
                     ),
                   ),
-                  color: Color(0xff3499ff),
+                  color: primaryDark,
                   onPressed: () {
                     aPController.onDone(context,_titleController.text,_descriptionController.text);
                   },

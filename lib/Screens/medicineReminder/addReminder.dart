@@ -16,7 +16,7 @@ void scheduleAlarm(DateTime scheduledNotificationDateTime, int ID, String title,
     'Todo_notif',
     'Channel for Todo notification',
     icon: 'codex_logo',
-    sound: null,
+    sound: RawResourceAndroidNotificationSound('a_long_cold_sting'),
     largeIcon: DrawableResourceAndroidBitmap('codex_logo'),
   );
 
