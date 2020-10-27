@@ -8,19 +8,17 @@ class other_service_element extends StatelessWidget {
 
   final IconData icon;
   final String title;
+  final Function(BuildContext context) buttonAction;
 
   const other_service_element({
-    Key key, this.icon, this.title,
+    Key key,@required this.icon,@required this.title,@required this.buttonAction,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        var route = new MaterialPageRoute(
-          builder: (BuildContext context) => new toDo(),
-        );
-        Navigator.of(context).push(route);
+         buttonAction(context);
       },
       child: Container(
         padding: EdgeInsets.all(15),

@@ -12,6 +12,22 @@ class AddPageStatecontroller extends GetxController{
   bool toggleReminder = false;
   List<DateTime> dateList = new List<DateTime>();
 
+  Map<String, bool> weekdays = {
+    'Saturday' : true,
+    'Sunday' : true,
+    'Monday' : true,
+    'Tuesday' : true,
+    'Wednesday' : true,
+    'Thursday' : true,
+    'Friday' : true,
+  };
+
+  void toggleWeekday(String day){
+    weekdays[day] = !weekdays[day];
+    update();
+    print(weekdays);
+  }
+
   void toggleButton_for_reminder() {
       toggleReminder = !toggleReminder;
       update();
@@ -25,6 +41,7 @@ class AddPageStatecontroller extends GetxController{
       DateTime temp = dateList.first;
 
       while (!temp.isAfter(dateList.last)) {
+        //selects date:
         DateTime selectedDate = new DateTime(
             temp.year,
             temp.month,
@@ -34,25 +51,32 @@ class AddPageStatecontroller extends GetxController{
             temp.second,
             temp.millisecond,
             temp.microsecond);
-        var rng = new Dmath.Random();
-        int generatedID = rng.nextInt(100);
 
-        todoBox.put(
-          DateFormat('yyyy-MM-dd HH:mm:ss').format(selectedDate),
-          {
-            'notificationId': generatedID,
-            'title': title,
-            'description': description,
-            'time': DateFormat('yyyy-MM-dd HH:mm:ss').format(selectedDate),
-            'reminder': toggleReminder
-          },
-        );
+        if(weekdays[ DateFormat('EEEE').format(selectedDate).toString()]){
+          //generate random ID for notification:
+          var rng = new Dmath.Random();
+          int generatedID = rng.nextInt(100);
 
-        if (toggleReminder) {
-          scheduleAlarm(selectedDate, generatedID, title,
-              description);
+          //puts in hive box:
+          todoBox.put(
+            DateFormat('yyyy-MM-dd HH:mm:ss').format(selectedDate),
+            {
+              'notificationId': generatedID,
+              'title': title,
+              'description': description,
+              'time': DateFormat('yyyy-MM-dd HH:mm:ss').format(selectedDate),
+              'reminder': toggleReminder
+            },
+          );
+
+          //if reminder is turned on, sets reminder
+          if (toggleReminder) {
+            scheduleAlarm(selectedDate, generatedID, title,
+                description);
+          }
         }
 
+        //adds selectedDate+1:
         temp = temp.add(Duration(days: 1));
       }
 

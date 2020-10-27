@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'box_tap_actions.dart';
 import 'other_service_element.dart';
 
 class service_boxes extends StatelessWidget {
@@ -10,7 +11,7 @@ class service_boxes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height-100,
+      height: MediaQuery.of(context).size.height - 100,
       width: MediaQuery.of(context).size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -18,8 +19,16 @@ class service_boxes extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              other_service_element(icon: Icons.calculate, title: 'BMI Calculator'),
-              other_service_element(icon: Icons.notifications_active, title: 'Medicine reminder'),
+              //BMI Calculator
+              other_service_element(
+                  icon: Icons.calculate,
+                  title: 'BMI Calculator',
+                  buttonAction: null),
+              //Medicine Reminder
+              other_service_element(
+                  icon: Icons.notifications_active,
+                  title: 'Medicine reminder',
+                  buttonAction: go_to_medicineReminder),
             ],
           ),
         ],
