@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 
 class AddPageStatecontroller extends GetxController{
 
-  TimeOfDay selectedTime;
+  List<TimeOfDay> selectedTimes = new List<TimeOfDay>();
   bool toggleReminder = false;
   List<DateTime> dateList = new List<DateTime>();
 
@@ -21,6 +21,11 @@ class AddPageStatecontroller extends GetxController{
     'Thursday' : true,
     'Friday' : true,
   };
+
+  void removeFromSelectedTimes(int i){
+    selectedTimes.removeAt(i);
+    update();
+  }
 
   void toggleWeekday(String day){
     weekdays[day] = !weekdays[day];
@@ -41,40 +46,44 @@ class AddPageStatecontroller extends GetxController{
       DateTime temp = dateList.first;
 
       while (!temp.isAfter(dateList.last)) {
-        //selects date:
-        DateTime selectedDate = new DateTime(
-            temp.year,
-            temp.month,
-            temp.day,
-            selectedTime.hour,
-            selectedTime.minute,
-            temp.second,
-            temp.millisecond,
-            temp.microsecond);
 
-        if(weekdays[ DateFormat('EEEE').format(selectedDate).toString()]){
-          //generate random ID for notification:
-          var rng = new Dmath.Random();
-          int generatedID = rng.nextInt(100);
+        selectedTimes.forEach((selectedtime) {
+          //selects date:
+          DateTime selectedDate = new DateTime(
+              temp.year,
+              temp.month,
+              temp.day,
+              selectedtime.hour,
+              selectedtime.minute,
+              temp.second,
+              temp.millisecond,
+              temp.microsecond);
 
-          //puts in hive box:
-          todoBox.put(
-            DateFormat('yyyy-MM-dd HH:mm:ss').format(selectedDate),
-            {
-              'notificationId': generatedID,
-              'title': title,
-              'description': description,
-              'time': DateFormat('yyyy-MM-dd HH:mm:ss').format(selectedDate),
-              'reminder': toggleReminder
-            },
-          );
+          if(weekdays[ DateFormat('EEEE').format(selectedDate).toString()]){
 
-          //if reminder is turned on, sets reminder
-          if (toggleReminder) {
-            scheduleAlarm(selectedDate, generatedID, title,
-                description);
+            //generate random ID for notification:
+            var rng = new Dmath.Random();
+            int generatedID = rng.nextInt(100);
+
+            //puts in hive box:
+            todoBox.put(
+              DateFormat('yyyy-MM-dd HH:mm:ss').format(selectedDate),
+              {
+                'notificationId': generatedID,
+                'title': title,
+                'description': description,
+                'time': DateFormat('yyyy-MM-dd HH:mm:ss').format(selectedDate),
+                'reminder': toggleReminder
+              },
+            );
+
+            //if reminder is turned on, sets reminder
+            if (toggleReminder) {
+              scheduleAlarm(selectedDate, generatedID, title,
+                  description);
+            }
           }
-        }
+        });
 
         //adds selectedDate+1:
         temp = temp.add(Duration(days: 1));
@@ -99,11 +108,15 @@ class AddPageStatecontroller extends GetxController{
   }
 
   selectTime(BuildContext context) async {
-    selectedTime = await showTimePicker(
+    TimeOfDay selectedTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
     );
-    update();
+
+    if(selectedTime!=null){
+      selectedTimes.add(selectedTime);
+      update();
+    }
   }
 
 }

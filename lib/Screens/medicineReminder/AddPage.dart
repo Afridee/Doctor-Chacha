@@ -1,8 +1,10 @@
 import 'package:doctor_chacha/Constants.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'AddPageStateController.dart';
+import 'time_element_Add_page.dart';
 import 'weekday_element_of_addPage.dart';
 
 class addPage extends StatefulWidget {
@@ -138,9 +140,8 @@ class _addPageState extends State<addPage> {
                 thickness: 1,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 30,bottom: 10,top: 10),
-                child:
-                Text('Select weekdays ', style: TextStyle(fontSize: 25)),
+                padding: const EdgeInsets.only(left: 30, bottom: 10, top: 10),
+                child: Text('Select weekdays ', style: TextStyle(fontSize: 25)),
               ),
               Column(
                 children: [
@@ -171,7 +172,7 @@ class _addPageState extends State<addPage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text('Set Time ', style: TextStyle(fontSize: 25)),
+                    child: Text('Add Times ', style: TextStyle(fontSize: 25)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -182,7 +183,7 @@ class _addPageState extends State<addPage> {
                           borderRadius: BorderRadius.circular(20),
                           color: primaryDark),
                       child: IconButton(
-                        icon: Icon(Icons.watch_later),
+                        icon: Icon(Icons.alarm_add),
                         iconSize: 25,
                         color: Colors.white,
                         onPressed: () {
@@ -197,13 +198,17 @@ class _addPageState extends State<addPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GetBuilder<AddPageStatecontroller>(
-                    builder: (context) {
-                      return Text(
-                        context.selectedTime != null
-                            ? '${context.selectedTime.hour} : ${context.selectedTime.minute}'
-                            : '',
-                        style: TextStyle(fontSize: 20, color: primaryDark),
-                        textAlign: TextAlign.center,
+                    builder: (_AddPageState) {
+                      return Container(
+                        height: 70,
+                        width: MediaQuery.of(context).size.width-50,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _AddPageState.selectedTimes.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return time_element(index: index);
+                          },
+                        ),
                       );
                     },
                   ),
@@ -298,5 +303,7 @@ class _addPageState extends State<addPage> {
     );
   }
 }
+
+
 
 

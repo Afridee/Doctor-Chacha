@@ -37,7 +37,7 @@ class _mainDrawerState extends State<mainDrawer> {
                         radius: 60,
                         backgroundColor: primaryDark,
                         child: Text(
-                          '${auth.userInfo['first_name']}'.toUpperCase().substring(0,1) + '${auth.userInfo['last_name']}'.toUpperCase().substring(0,1),
+                          auth.userInfo!=null ? '${auth.userInfo['first_name']}'.toUpperCase().substring(0,1) + '${auth.userInfo['last_name']}'.toUpperCase().substring(0,1) : '',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 44
@@ -47,7 +47,7 @@ class _mainDrawerState extends State<mainDrawer> {
                       Padding(
                         padding: const EdgeInsets.only(top: 13.0),
                         child: Text(
-                          '${auth.userInfo['first_name']} ${auth.userInfo['last_name']}',
+                          auth.userInfo!=null ? '${auth.userInfo['first_name']} ${auth.userInfo['last_name']}' : '',
                           style: TextStyle(
                               color: primaryDark,
                               fontSize: 24

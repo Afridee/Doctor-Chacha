@@ -1,3 +1,4 @@
+import 'package:date_time_format/date_time_format.dart';
 import 'package:doctor_chacha/Constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,9 +43,18 @@ class listElement extends StatelessWidget {
           subtitle: Text(
             toDo.description +
                 '\nat ' +
-                DateTime.parse(toDo.time).hour.toString() +
-                ':' +
-                DateTime.parse(toDo.time).minute.toString(),
+                DateTime.parse(toDo.time)
+                    .format(DateTimeFormats.american)
+                    .split(' ')[DateTime.parse(toDo.time)
+                        .format(DateTimeFormats.american)
+                        .split(' ')
+                        .length -
+                    2] +
+                ' ' +
+                DateTime.parse(toDo.time)
+                    .format(DateTimeFormats.american)
+                    .split(' ')
+                    .last,
             style: TextStyle(color: primaryDark),
           ),
           trailing: toDo.reminder
